@@ -1,0 +1,16 @@
+/nbproject/
+/site/app/tmp/cache/models/myapp_*
+/site/app/tmp/cache/persistent/myapp_*
+/site/app/tmp/cache/views/myapp_*
+/site/app/tmp/sessions/sess_*
+/site/app/tmp/logs/*.log
+/public_html/admin/img/produtos/*.*
+/mkt/tmp/*.*
+/mkt/tmp/*/
+/site/app/tmp/cache/cake_ow_menu
+/public_html/uploads/
+/site/app/tmp/parametros_cache.php
+*Thumbs.db
+*mwb.bak
+*wb51.mwb
+site/app/Config/core.php

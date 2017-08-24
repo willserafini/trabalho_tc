@@ -1,0 +1,364 @@
+#geral
+
+msgid "Obs"
+msgstr "Observação"
+
+msgid "Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%"
+msgstr "Página %page% de %pages%, exibindo %current% linhas de um total de %count%, iniciando na linha %start%, terminando em %end%"
+
+msgid "Actions"
+msgstr "Ações"
+
+msgid "View"
+msgstr "Ver"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Delete"
+msgstr "Remover"
+
+msgid "Yes"
+msgstr "Sim"
+
+msgid "No"
+msgstr "Não"
+
+msgid "Are you sure you want to delete # %s?"
+msgstr "Você tem certeza que deseja remover # %s?"
+
+msgid "previous"
+msgstr "anterior"
+
+msgid "next"
+msgstr "próxima"
+
+msgid "Submit"
+msgstr "Salvar"
+
+msgid "Created"
+msgstr "Data de Criação"
+
+msgid "Updated"
+msgstr "Atualizado"
+
+msgid "This field cannot be left blank"
+msgstr "Este campo não pode ficar em branco"
+
+msgid "Senha Confirma"
+msgstr "Confirme a senha"
+
+msgid "You are not authorized to access that location."
+msgstr "Você não está autorizado a entrar nesse endereço"
+
+msgid "Login failed. Invalid username or password."
+msgstr "Usuário ou senha inválidos"
+
+msgid "Descricao"
+msgstr "Descrição"
+
+msgid "Referencia"
+msgstr "Referência"
+
+msgid "Preco"
+msgstr "Preço"
+
+msgid "Text"
+msgstr "Texto"
+
+msgid "Titulo"
+msgstr "Título"
+
+msgid "Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}"
+msgstr "Página {:page} de {:pages}, exibindo {:current} linhas de um total de {:count}, iniciando na linha {:start}, terminando em {:end}"
+
+msgid "New Universidade"
+msgstr "Nova Universidade"
+
+msgid "List Universidades"
+msgstr "Listar Universidades"
+
+msgid "Edit Universidade"
+msgstr "Editar Universidade"
+
+msgid "Delete Universidade"
+msgstr "Remover Universidade"
+
+msgid "Numero"
+msgstr "Número"
+
+msgid "Endereco"
+msgstr "Endereço"
+
+msgid "Uf"
+msgstr "UF"
+
+msgid "Municipio"
+msgstr "Município"
+
+msgid "Add Universidade"
+msgstr "Adicionar Universidade"
+
+msgid "Invalid universidade"
+msgstr "Universidade inválida"
+
+msgid "The universidade has been saved."
+msgstr "A Univerdade foi salva."
+
+msgid "The universidade could not be saved. Please, try again."
+msgstr "A universidade não pode ser salva. Por favor, tente novamente."
+
+msgid "The universidade has been deleted."
+msgstr "A universidade foi removida."
+
+msgid "The universidade could not be deleted. Please, try again."
+msgstr "A universidade não pode ser removida. Por favor, tente novamente."
+
+msgid "Cpf"
+msgstr "CPF"
+
+msgid "Rg"
+msgstr "RG"
+
+msgid "Cep"
+msgstr "CEP"
+
+msgid "Matricula"
+msgstr "Matrícula"
+
+msgid "Edit Aluno"
+msgstr "Editar Aluno"
+
+msgid "Delete Aluno"
+msgstr "Remover Aluno"
+
+msgid "List Alunos"
+msgstr "Listar Alunos"
+
+msgid "New Aluno"
+msgstr "Novo Aluno"
+
+msgid "Add Aluno"
+msgstr "Adicionar Aluno"
+
+msgid "Invalid aluno"
+msgstr "aluno inválida"
+
+msgid "The aluno has been saved."
+msgstr "O Aluno foi salvo."
+
+msgid "The aluno could not be saved. Please, try again."
+msgstr "O aluno não pode ser salvo. Por favor, tente novamente."
+
+msgid "The aluno has been deleted."
+msgstr "O aluno foi removido."
+
+msgid "The aluno could not be deleted. Please, try again."
+msgstr "O aluno não pode ser removido. Por favor, tente novamente."
+
+msgid "Nome Mae"
+msgstr "Nome Mãe"
+
+msgid "Lingua Estrangeira"
+msgstr "Língua Estrangeira"
+
+msgid "Add Simulado"
+msgstr "Adicionar Lista"
+
+msgid "New Simulado"
+msgstr "Nova Lista"
+
+msgid "List Simulados"
+msgstr "Listar Listas"
+
+msgid "Edit Simulado"
+msgstr "Editar Lista"
+
+msgid "Delete Simulado"
+msgstr "Remover Lista"
+
+msgid "The simulado has been deleted."
+msgstr "A Lista foi removido."
+
+msgid "Data Inicio"
+msgstr "Data Início"
+
+msgid "Edit Empresa"
+msgstr "Editar Empresa"
+
+msgid "Delete Empresa"
+msgstr "Remover Empresa"
+
+msgid "List Empresas"
+msgstr "Listar Empresas"
+
+msgid "New Empresa"
+msgstr "Nova Empresa"
+
+msgid "Add Empresa"
+msgstr "Adicionar Empresa"
+
+msgid "Invalid empresa"
+msgstr "Empresa inválida"
+
+msgid "The empresa has been saved."
+msgstr "A empresa foi salva."
+
+msgid "The empresa could not be saved. Please, try again."
+msgstr "A empresa não pode ser salva. Por favor, tente novamente."
+
+msgid "The empresa has been deleted."
+msgstr "A empresa foi removida."
+
+msgid "The empresa could not be deleted. Please, try again."
+msgstr "A empresa não pode ser removida. Por favor, tente novamente."
+
+msgid "Conteudos"
+msgstr "Conteúdos"
+
+msgid "Conteudo"
+msgstr "Conteúdo"
+
+msgid "New Conteudo"
+msgstr "Novo Conteúdo"
+
+msgid "Add Conteudo"
+msgstr "Adicionar Conteúdo"
+
+msgid "List Conteudos"
+msgstr "Listar Conteúdos"
+
+msgid "Edit Conteudo"
+msgstr "Editar Conteúdo"
+
+msgid "Delete Conteudo"
+msgstr "Remover Conteúdo"
+
+msgid "Invalid conteudo"
+msgstr "Conteúdo inválido"
+
+msgid "The conteudo has been saved."
+msgstr "O conteúdo foi salvo."
+
+msgid "The conteudo could not be saved. Please, try again."
+msgstr "O conteúdo não pode ser salvo. Por favor, tente novamente."
+
+msgid "The conteudo has been deleted."
+msgstr "O conteúdo foi removido."
+
+msgid "The conteudo could not be deleted. Please, try again."
+msgstr "O conteúdo não pode ser removido. Por favor, tente novamente."
+
+msgid "Codigo"
+msgstr "Código"
+
+#recados
+
+msgid "New Recado"
+msgstr "Novo Recado"
+
+msgid "Add Recado"
+msgstr "Adicionar Recado"
+
+msgid "List Recados"
+msgstr "Listar Recados"
+
+msgid "Edit Recado"
+msgstr "Editar Recado"
+
+msgid "Delete Recado"
+msgstr "Remover Recado"
+
+msgid "Invalid recado"
+msgstr "Recado inválido"
+
+msgid "The recado has been saved."
+msgstr "O recado foi salvo."
+
+msgid "The recado could not be saved. Please, try again."
+msgstr "O recado não pode ser salvo. Por favor, tente novamente."
+
+msgid "The recado has been deleted."
+msgstr "O recado foi removido."
+
+msgid "The recado could not be deleted. Please, try again."
+msgstr "O recado não pode ser removido. Por favor, tente novamente."
+
+#info verstibulares
+
+msgid "Informacao Vestibulare"
+msgstr "Informação Vestibular"
+
+msgid "Informacao Vestibulares"
+msgstr "Informação Vestibulares"
+
+msgid "New Informacao Vestibulare"
+msgstr "Nova Informação"
+
+msgid "Add Informacao Vestibulare"
+msgstr "Adicionar Informação"
+
+msgid "List Informacao Vestibulares"
+msgstr "Listar Informações"
+
+msgid "Edit Informacao Vestibulare"
+msgstr "Editar Informação"
+
+msgid "Delete Informacao Vestibulare"
+msgstr "Remover Informação"
+
+msgid "Invalid informacao vestibulare"
+msgstr "Informação Vestibular inválido"
+
+msgid "The informacao vestibulare has been saved."
+msgstr "A informação foi salva."
+
+msgid "The informacao vestibulare could not be saved. Please, try again."
+msgstr "A informação não pode ser salva. Por favor, tente novamente."
+
+msgid "The informacao vestibulare has been deleted."
+msgstr "A informação foi removida."
+
+msgid "The informacao vestibulare could not be deleted. Please, try again."
+msgstr "A informação não pode ser removida. Por favor, tente novamente."
+
+#horario estudos
+
+msgid "Horario Estudos"
+msgstr "Horário Estudos"
+
+msgid "Horario Estudo"
+msgstr "Horário Estudo"
+
+msgid "Anotacoes"
+msgstr "Anotações"
+
+msgid "New Horario Estudo"
+msgstr "Novo Horário Estudo"
+
+msgid "Add Horario Estudo"
+msgstr "Adicionar Horário Estudo"
+
+msgid "List Horario Estudos"
+msgstr "Listar Horário Estudos"
+
+msgid "Edit Horario Estudo"
+msgstr "Editar Horário Estudo"
+
+msgid "Delete Horario Estudo"
+msgstr "Remover Horário Estudo"
+
+msgid "Invalid horario estudo"
+msgstr "Horário de estudo inválido"
+
+msgid "The horario estudo has been saved."
+msgstr "O horário de estudo foi salvo."
+
+msgid "The horario estudo could not be saved. Please, try again."
+msgstr "O horário de estudo não pode ser salvo. Por favor, tente novamente."
+
+msgid "The horario estudo has been deleted."
+msgstr "O horário de estudo foi removido."
+
+msgid "The horario estudo could not be deleted. Please, try again."
+msgstr "O horário de estudo não pode ser removido. Por favor, tente novamente."

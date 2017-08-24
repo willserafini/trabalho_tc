@@ -1,0 +1,19 @@
+#letras {
+    margin-bottom: 15px;
+}
+
+#letras a{
+    padding: 0 5px;
+    font-size: 13px;
+}
+
+.DivOpcoesConteudos input {
+    display: block;
+    margin-bottom: 2px;
+}
+
+.alunoNome {
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 1px dashed #000;
+}

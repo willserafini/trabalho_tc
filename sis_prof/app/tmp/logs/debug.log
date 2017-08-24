@@ -1,0 +1,32 @@
+2017-03-10 12:44:41 Debug: Notice (8): Undefined variable: id in [C:\wamp64\www\metodo_simulado\site\app\View\Elements\site\grafico.ctp, line 40]
+Trace:
+include - APP\View\Elements\site\grafico.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 961
+View::_render() - CORE\Cake\View\View.php, line 923
+View::_renderElement() - CORE\Cake\View\View.php, line 1217
+View::element() - CORE\Cake\View\View.php, line 418
+include - APP\View\Site\index.ctp, line 51
+View::_evaluate() - CORE\Cake\View\View.php, line 961
+View::_render() - CORE\Cake\View\View.php, line 923
+View::render() - CORE\Cake\View\View.php, line 473
+Controller::render() - CORE\Cake\Controller\Controller.php, line 960
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 200
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - C:\wamp64\www\metodo_simulado\public_html\index.php, line 92
+
+2017-03-10 12:44:41 Debug: Notice (8): Undefined variable: id in [C:\wamp64\www\metodo_simulado\site\app\View\Elements\site\grafico.ctp, line 45]
+Trace:
+include - APP\View\Elements\site\grafico.ctp, line 45
+View::_evaluate() - CORE\Cake\View\View.php, line 961
+View::_render() - CORE\Cake\View\View.php, line 923
+View::_renderElement() - CORE\Cake\View\View.php, line 1217
+View::element() - CORE\Cake\View\View.php, line 418
+include - APP\View\Site\index.ctp, line 51
+View::_evaluate() - CORE\Cake\View\View.php, line 961
+View::_render() - CORE\Cake\View\View.php, line 923
+View::render() - CORE\Cake\View\View.php, line 473
+Controller::render() - CORE\Cake\Controller\Controller.php, line 960
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 200
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - C:\wamp64\www\metodo_simulado\public_html\index.php, line 92
+

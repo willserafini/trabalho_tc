@@ -1,0 +1,76 @@
+.logado{
+    float: right;
+    margin-top: -15px;
+}
+
+.clear{
+    clear: both;
+    height: 0px;
+    font-size: 0px;
+}
+
+body {
+    font-size:12px;
+}
+
+h1 {
+    font-size: 100%;
+    width: 80%;
+}
+
+#header h1{
+    background-image: none;
+    padding-left: 0;
+}
+
+input, textarea{
+    padding: 2px;
+    font-size: 100%;
+}
+
+form div{
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+div.form, div.index, div.view{
+    width: 90%;
+    float: none;
+    border-left: none;
+    padding-left: 0px;
+}
+
+div.actions{
+    float: none;
+    width: auto;
+    padding-left: 0;
+}
+
+div.actions ul li a{
+    display: inline-block;
+}
+
+fieldset legend{
+    font-size: 140%;
+}
+
+fieldset{
+    padding-top: 15px;
+}
+
+label{
+    margin-bottom: 1px;
+}
+
+#footer a{
+    color: #fff;
+}
+
+div.actions li{
+    display: inline;
+}
+
+div.error-message{
+    color: #C73E14;
+    background: transparent;
+}
