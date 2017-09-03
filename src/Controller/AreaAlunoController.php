@@ -55,7 +55,8 @@ class AreaAlunoController extends AppController {
             'loginAction' => [
                 'controller' => 'Site',
                 'action' => 'login'
-            ]
+            ],
+            'storage' => ['className' => 'Session', 'key' => 'Auth.Aluno']
         ]);
 
         /*
@@ -75,7 +76,7 @@ class AreaAlunoController extends AppController {
     public function beforeRender(Event $event) {    
         parent::beforeRender($event);
         // Login Check
-        if($this->request->session()->read('Auth.User')){
+        if($this->request->session()->read('Auth.Aluno')){
              $this->set('loggedIn', true);   
         } else {
             $this->set('loggedIn', false); 
