@@ -35,16 +35,18 @@
     </head>
     <body>
         <nav class="top-bar expanded" data-topbar role="navigation">
-            <ul class="title-area large-2 medium-2 columns">
-                <li class="name">
-                    <h1><?= $this->Html->link('Professores', ['controller' => 'professores', 'action' => 'index']); ?></h1>
-                </li>
-            </ul>
-            <ul class="title-area large-1 medium-2 columns">
-                <li class="name">
-                    <h1><?= $this->Html->link('Alunos', ['controller' => 'alunos', 'action' => 'index']); ?></h1>
-                </li>
-            </ul>
+            <?php if ($loggedIn) : ?>
+                <ul class="title-area large-2 medium-2 columns">
+                    <li class="name">
+                        <h1><?= $this->Html->link('Professores', ['controller' => 'professores', 'action' => 'index']); ?></h1>
+                    </li>
+                </ul>
+                <ul class="title-area large-1 medium-2 columns">
+                    <li class="name">
+                        <h1><?= $this->Html->link('Alunos', ['controller' => 'alunos', 'action' => 'index']); ?></h1>
+                    </li>
+                </ul>
+            <?php endif; ?>
             <section class="top-bar-section">
                 <ul class="right">
                     <?php if ($loggedIn) : ?>
