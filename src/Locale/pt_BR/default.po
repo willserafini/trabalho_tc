@@ -1,0 +1,59 @@
+msgid "June"
+msgstr "Junho"
+
+msgid "July"
+msgstr "Julho"
+
+msgid "August"
+msgstr "Agosto"
+
+msgid "September"
+msgstr "Setembro"
+
+msgid "October"
+msgstr "Outubro"
+
+msgid "November"
+msgstr "Novembro"
+
+msgid "December"
+msgstr "Dezembro"
+
+msgid "previous"
+msgstr "anterior"
+
+msgid "next"
+msgstr "próxima"
+
+msgid "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total"
+msgstr "Página {{page}} de {{pages}}, exibindo {{current}} linha(s) de um total de {{count}}"
+
+msgid "Are you sure you want to delete # %s?"
+msgstr "Você tem certeza que deseja remover # %s?"
+
+msgid "View"
+msgstr "Ver"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Delete"
+msgstr "Remover"
+
+msgid "Submit"
+msgstr "Salvar"
+
+msgid "Actions"
+msgstr "Ações"
+
+msgid "Created"
+msgstr "Criado em"
+
+msgid "Modified"
+msgstr "Atualizado em"
+
+msgid "Add Professore"
+msgstr "Adicionar Professor"
+
+msgid "The professore has been saved."
+msgstr "Professor salvo com sucesso."
