@@ -3,6 +3,7 @@
   * @var \App\View\AppView $this
   * @var \App\Model\Entity\Aluno[]|\Cake\Collection\CollectionInterface $alunos
   */
+use App\Model\Table\AlunosTable;
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
@@ -17,6 +18,7 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('eca_compreensao', 'ECA') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('curso') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -27,7 +29,8 @@
             <tr>
                 <td><?= $this->Number->format($aluno->id) ?></td>
                 <td><?= h($aluno->nome) ?></td>
-                <td><?= App\Model\Table\AlunosTable::getNomeCurso($aluno->curso) ?></td>
+                <td><?= AlunosTable::getNomeEca($aluno->eca_compreensao) ?></td>
+                <td><?= AlunosTable::getNomeCurso($aluno->curso) ?></td>                
                 <td><?= h($aluno->created) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $aluno->id]) ?>

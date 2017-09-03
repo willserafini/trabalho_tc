@@ -75,5 +75,9 @@ class AppController extends Controller {
             $this->set('loggedIn', false);
         }
     }
+    
+    public function getIdUsuarioLogado() {
+        return $this->Auth->user('id');
+    }
 
 }

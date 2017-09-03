@@ -21,10 +21,12 @@ use Cake\Validation\Validator;
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class AlunosTable extends Table {
-    
+
     const CURSO_CIENCIA_COMPUTACAO = 1;
     const CURSO_ENGENHARIA_COMPUTACAO = 2;
     const CURSO_LITERATURA_COMPUTACAO = 3;
+    const ECA_SEQUENCIAL = 1;
+    const ECA_GLOBAL = 2;
 
     /**
      * Initialize method
@@ -95,6 +97,11 @@ class AlunosTable extends Table {
         return $rules;
     }
     
+    public function ecaIsCalculado($id) {
+        $aluno = $this->get($id);
+        return !empty($aluno->eca_compreensao);
+    }
+
     public static function getCursos() {
         return [
             self::CURSO_CIENCIA_COMPUTACAO => 'Ciência da Computação',
@@ -102,9 +109,25 @@ class AlunosTable extends Table {
             self::CURSO_LITERATURA_COMPUTACAO => 'Literatura da Computação'
         ];
     }
-    
+
     public static function getNomeCurso($curso) {
         return self::getCursos()[$curso];
+    }
+
+    public static function getEcas() {
+        return [
+            self::ECA_SEQUENCIAL => 'Sequencial',
+            self::ECA_GLOBAL => 'Global'
+        ];
+    }
+
+    public static function getNomeEca($eca) {
+        $ecas = self::getEcas();
+        if(!isset($ecas[$eca])) {
+            return '';
+        }
+        
+        return $ecas[$eca];
     }
 
 }

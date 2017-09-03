@@ -13,6 +13,7 @@ use Cake\Auth\DefaultPasswordHasher;
  * @property string $senha
  * @property \Cake\I18n\FrozenDate $data_nascimento
  * @property int $curso
+ * @property int $eca_compreensao
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  */
