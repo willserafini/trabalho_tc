@@ -16,13 +16,10 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('conteudo_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('conteudo_id', 'Conteúdo Pai') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('anexo_img') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('anexo_doc') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('ordem') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -30,13 +27,10 @@
             <?php foreach ($conteudos as $conteudo): ?>
             <tr>
                 <td><?= $this->Number->format($conteudo->id) ?></td>
-                <td><?= $this->Number->format($conteudo->conteudo_id) ?></td>
+                <td><?php echo $conteudo->conteudo_pai ? $conteudo->conteudo_pai->nome : ''; ?>&nbsp;</td>
                 <td><?= h($conteudo->nome) ?></td>
-                <td><?= h($conteudo->anexo_img) ?></td>
-                <td><?= h($conteudo->anexo_doc) ?></td>
                 <td><?= $this->Number->format($conteudo->ordem) ?></td>
-                <td><?= h($conteudo->created) ?></td>
-                <td><?= h($conteudo->modified) ?></td>
+                <td><?= h($conteudo->created->format('d/m/Y H:i:s')) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $conteudo->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $conteudo->id]) ?>

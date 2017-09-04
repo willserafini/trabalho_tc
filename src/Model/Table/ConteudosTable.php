@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -22,8 +23,7 @@ use Cake\Validation\Validator;
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class ConteudosTable extends Table
-{
+class ConteudosTable extends Table {
 
     /**
      * Initialize method
@@ -31,21 +31,23 @@ class ConteudosTable extends Table
      * @param array $config The configuration for the Table.
      * @return void
      */
-    public function initialize(array $config)
-    {
+    public function initialize(array $config) {
         parent::initialize($config);
 
         $this->setTable('conteudos');
-        $this->setDisplayField('id');
+        $this->setDisplayField('nome');
         $this->setPrimaryKey('id');
 
-        $this->addBehavior('Timestamp');
-
-        $this->belongsTo('Conteudos', [
+        $this->addBehavior('Timestamp');        
+        
+        $this->belongsTo('ConteudoPai', [
+            'className' => 'Conteudos',
             'foreignKey' => 'conteudo_id'
         ]);
-        $this->hasMany('Conteudos', [
-            'foreignKey' => 'conteudo_id'
+        $this->hasMany('ConteudoFilho', [
+            'className' => 'Conteudos',
+            'foreignKey' => 'conteudo_id',
+            'sort' => ['ConteudoFilho.ordem' => 'ASC']
         ]);
     }
 
@@ -55,36 +57,35 @@ class ConteudosTable extends Table
      * @param \Cake\Validation\Validator $validator Validator instance.
      * @return \Cake\Validation\Validator
      */
-    public function validationDefault(Validator $validator)
-    {
+    public function validationDefault(Validator $validator) {
         $validator
-            ->integer('id')
-            ->allowEmpty('id', 'create');
+                ->integer('id')
+                ->allowEmpty('id', 'create');
 
         $validator
-            ->scalar('nome')
-            ->requirePresence('nome', 'create')
-            ->notEmpty('nome');
+                ->scalar('nome')
+                ->requirePresence('nome', 'create')
+                ->notEmpty('nome');
 
         $validator
-            ->scalar('descricao')
-            ->allowEmpty('descricao');
+                ->scalar('descricao')
+                ->allowEmpty('descricao');
 
         $validator
-            ->scalar('anexo_img')
-            ->allowEmpty('anexo_img');
+                ->scalar('anexo_img')
+                ->allowEmpty('anexo_img');
 
         $validator
-            ->scalar('anexo_doc')
-            ->allowEmpty('anexo_doc');
+                ->scalar('anexo_doc')
+                ->allowEmpty('anexo_doc');
 
         $validator
-            ->scalar('explicacao_geral')
-            ->allowEmpty('explicacao_geral');
+                ->scalar('explicacao_geral')
+                ->allowEmpty('explicacao_geral');
 
         $validator
-            ->integer('ordem')
-            ->allowEmpty('ordem');
+                ->integer('ordem')
+                ->allowEmpty('ordem');
 
         return $validator;
     }
@@ -96,10 +97,10 @@ class ConteudosTable extends Table
      * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
      * @return \Cake\ORM\RulesChecker
      */
-    public function buildRules(RulesChecker $rules)
-    {
+    public function buildRules(RulesChecker $rules) {
         $rules->add($rules->existsIn(['conteudo_id'], 'Conteudos'));
 
         return $rules;
     }
+
 }

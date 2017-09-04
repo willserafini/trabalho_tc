@@ -13,7 +13,6 @@
             )
         ?></li>
         <li><?= $this->Html->link(__('List Conteudos'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Conteudos'), ['controller' => 'Conteudos', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Conteudo'), ['controller' => 'Conteudos', 'action' => 'add']) ?></li>
     </ul>
 </nav>
@@ -22,7 +21,7 @@
     <fieldset>
         <legend><?= __('Edit Conteudo') ?></legend>
         <?php
-            echo $this->Form->control('conteudo_id');
+            echo $this->Form->control('conteudo_id', array('empty' => true, 'label' => 'Conteúdo Pai'));
             echo $this->Form->control('nome');
             echo $this->Form->control('descricao');
             echo $this->Form->control('anexo_img');

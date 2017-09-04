@@ -57,3 +57,39 @@ msgstr "Adicionar Professor"
 
 msgid "The professore has been saved."
 msgstr "Professor salvo com sucesso."
+
+msgid "Conteudos"
+msgstr "Conteúdos"
+
+msgid "Conteudo"
+msgstr "Conteúdo"
+
+msgid "Explicacao Geral"
+msgstr "Explicação Geral"
+
+msgid "Descricao"
+msgstr "Descrição"
+
+msgid "Add Conteudo"
+msgstr "Adicionar Conteúdo"
+
+msgid "List Conteudos"
+msgstr "Listar Conteúdos"
+
+msgid "New Conteudo"
+msgstr "Novo Conteúdo"
+
+msgid "Edit Conteudo"
+msgstr "Editar Conteúdo"
+
+msgid "Delete Conteudo"
+msgstr "Remover Conteúdo"
+
+msgid "Conteudo Id"
+msgstr "Conteúdo Pai"
+
+msgid "Related Conteudos"
+msgstr "Conteúdo Filhos"
+
+msgid "Are you sure you want to delete # {0}?"
+msgstr "Você tem certeza que deseja remover # {0}?"

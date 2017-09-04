@@ -1,7 +1,8 @@
 <?php
+
 namespace App\Controller;
 
-use App\Controller\AppController;
+use App\Controller\AreaProfessorController;
 
 /**
  * Conteudos Controller
@@ -10,18 +11,19 @@ use App\Controller\AppController;
  *
  * @method \App\Model\Entity\Conteudo[] paginate($object = null, array $settings = [])
  */
-class ConteudosController extends AppController
-{
+class ConteudosController extends AreaProfessorController {
 
     /**
      * Index method
      *
      * @return \Cake\Http\Response|void
      */
-    public function index()
-    {
+    public function index() {
+        $this->paginate = [
+            'contain' => ['ConteudoPai']
+        ];
+        
         $conteudos = $this->paginate($this->Conteudos);
-
         $this->set(compact('conteudos'));
         $this->set('_serialize', ['conteudos']);
     }
@@ -33,10 +35,9 @@ class ConteudosController extends AppController
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
-    {
+    public function view($id = null) {
         $conteudo = $this->Conteudos->get($id, [
-            'contain' => ['Conteudos']
+            'contain' => ['ConteudoPai', 'ConteudoFilho']
         ]);
 
         $this->set('conteudo', $conteudo);
@@ -48,8 +49,7 @@ class ConteudosController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
-    {
+    public function add() {
         $conteudo = $this->Conteudos->newEntity();
         if ($this->request->is('post')) {
             $conteudo = $this->Conteudos->patchEntity($conteudo, $this->request->getData());
@@ -60,6 +60,8 @@ class ConteudosController extends AppController
             }
             $this->Flash->error(__('The conteudo could not be saved. Please, try again.'));
         }
+        
+        $this->set('conteudos', $this->Conteudos->find('list'));
         $this->set(compact('conteudo'));
         $this->set('_serialize', ['conteudo']);
     }
@@ -71,8 +73,7 @@ class ConteudosController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
-    {
+    public function edit($id = null) {
         $conteudo = $this->Conteudos->get($id, [
             'contain' => []
         ]);
@@ -85,6 +86,8 @@ class ConteudosController extends AppController
             }
             $this->Flash->error(__('The conteudo could not be saved. Please, try again.'));
         }
+        
+        $this->set('conteudos', $this->Conteudos->find('list'));
         $this->set(compact('conteudo'));
         $this->set('_serialize', ['conteudo']);
     }
@@ -96,8 +99,7 @@ class ConteudosController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
-    {
+    public function delete($id = null) {
         $this->request->allowMethod(['post', 'delete']);
         $conteudo = $this->Conteudos->get($id);
         if ($this->Conteudos->delete($conteudo)) {
@@ -108,4 +110,5 @@ class ConteudosController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
 }
