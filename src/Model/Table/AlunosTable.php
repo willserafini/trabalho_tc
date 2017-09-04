@@ -96,10 +96,20 @@ class AlunosTable extends Table {
 
         return $rules;
     }
-    
+
     public function ecaIsCalculado($id) {
         $aluno = $this->get($id);
         return !empty($aluno->eca_compreensao);
+    }
+
+    public function salvarECA($alunoId, $eca_compreensao, $eca_obs) {
+        $aluno = $this->get($alunoId);
+
+        $aluno->eca_compreensao = $eca_compreensao;
+        $aluno->eca_obs = $eca_obs;
+        if(!$this->save($aluno)) {
+            throw new Exception('Não foi possível salvar o ECA!');
+        }
     }
 
     public static function getCursos() {
@@ -123,10 +133,10 @@ class AlunosTable extends Table {
 
     public static function getNomeEca($eca) {
         $ecas = self::getEcas();
-        if(!isset($ecas[$eca])) {
+        if (!isset($ecas[$eca])) {
             return '';
         }
-        
+
         return $ecas[$eca];
     }
 

@@ -1,7 +1,7 @@
 <?php
 /**
-  * @var \App\View\AppView $this
-  */
+ * @var \App\View\AppView $this
+ */
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
@@ -14,11 +14,16 @@
     <fieldset>
         <legend><?= __('Add Aluno') ?></legend>
         <?php
-            echo $this->Form->control('nome');
-            echo $this->Form->control('email');
-            echo $this->Form->control('senha', ['type' => 'password']);
-            echo $this->Form->control('data_nascimento');
-            echo $this->Form->control('curso', ['options' => App\Model\Table\AlunosTable::getCursos()]);
+        $this->Form->templates(
+                ['dateWidget' => '{{day}}/{{month}}/{{year}}']
+        );
+        echo $this->Form->control('nome');
+        echo $this->Form->control('email');
+        echo $this->Form->control('senha', ['type' => 'password']);
+        echo $this->Form->control('data_nascimento', [
+            'minYear' => date('Y') - 70,
+            'maxYear' => date('Y') - 15]);
+        echo $this->Form->control('curso', ['options' => App\Model\Table\AlunosTable::getCursos()]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
