@@ -12,6 +12,7 @@ use Cake\ORM\Entity;
  * @property string $descricao
  * @property string $anexo_img
  * @property string $anexo_doc
+ * @property string $pasta
  * @property string $explicacao_geral
  * @property int $ordem
  * @property \Cake\I18n\FrozenTime $created

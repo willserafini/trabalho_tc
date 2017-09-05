@@ -41,6 +41,7 @@ use Cake\Error\ErrorHandler;
 use Cake\Http\ServerRequest;
 use Cake\Log\Log;
 use Cake\Mailer\Email;
+use Cake\Routing\DispatcherFactory;
 use Cake\Utility\Inflector;
 use Cake\Utility\Security;
 
@@ -215,3 +216,5 @@ Type::build('timestamp')
 if (Configure::read('debug')) {
     Plugin::load('DebugKit', ['bootstrap' => true]);
 }
+
+Plugin::load('Josegonzalez/Upload');

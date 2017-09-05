@@ -41,7 +41,7 @@ use Cake\Routing\Route\DashedRoute;
  * `:action` markers.
  *
  */
-Router::defaultRouteClass(DashedRoute::class);
+Router::defaultRouteClass('Route');
 
 Router::scope('/', function (RouteBuilder $routes) {
     /**
@@ -50,6 +50,9 @@ Router::scope('/', function (RouteBuilder $routes) {
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
     $routes->connect('/', ['controller' => 'Site', 'action' => 'index']);
+    $routes->connect('/index', ['controller' => 'Site', 'action' => 'index']);
+    $routes->connect('/login', ['controller' => 'Site', 'action' => 'login']);
+    $routes->connect('/nova_conta', ['controller' => 'Site', 'action' => 'nova_conta']);
     $routes->connect('/area_professor', ['controller' => 'Professores', 'action' => 'index']);
 
     /**

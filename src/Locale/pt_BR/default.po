@@ -93,3 +93,9 @@ msgstr "Conteúdo Filhos"
 
 msgid "Are you sure you want to delete # {0}?"
 msgstr "Você tem certeza que deseja remover # {0}?"
+
+msgid "Anexo Img"
+msgstr "Imagem"
+
+msgid "Anexo Doc"
+msgstr "Documento"

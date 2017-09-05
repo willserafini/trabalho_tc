@@ -17,15 +17,15 @@
     </ul>
 </nav>
 <div class="conteudos form large-9 medium-8 columns content">
-    <?= $this->Form->create($conteudo) ?>
+    <?= $this->Form->create($conteudo, ['type' => 'file']) ?>
     <fieldset>
         <legend><?= __('Edit Conteudo') ?></legend>
         <?php
             echo $this->Form->control('conteudo_id', array('empty' => true, 'label' => 'Conteúdo Pai'));
             echo $this->Form->control('nome');
             echo $this->Form->control('descricao');
-            echo $this->Form->control('anexo_img');
-            echo $this->Form->control('anexo_doc');
+            echo $this->Form->control('anexo_img', ['type' => 'file']);
+            echo $this->Form->control('anexo_doc', ['type' => 'file']);
             echo $this->Form->control('explicacao_geral');
             echo $this->Form->control('ordem');
         ?>

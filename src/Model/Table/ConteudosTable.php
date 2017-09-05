@@ -38,8 +38,8 @@ class ConteudosTable extends Table {
         $this->setDisplayField('nome');
         $this->setPrimaryKey('id');
 
-        $this->addBehavior('Timestamp');        
-        
+        $this->addBehavior('Timestamp');
+
         $this->belongsTo('ConteudoPai', [
             'className' => 'Conteudos',
             'foreignKey' => 'conteudo_id'
@@ -48,6 +48,15 @@ class ConteudosTable extends Table {
             'className' => 'Conteudos',
             'foreignKey' => 'conteudo_id',
             'sort' => ['ConteudoFilho.ordem' => 'ASC']
+        ]);
+
+        $this->addBehavior('Josegonzalez/Upload.Upload', [
+            'anexo_img' => [
+                'path' => 'webroot/uploads{DS}{model}{DS}{field}{DS}{field-value:pasta}'
+            ],
+            'anexo_doc' => [
+                'path' => 'webroot/uploads{DS}{model}{DS}{field}{DS}{field-value:pasta}'
+            ]
         ]);
     }
 
@@ -72,12 +81,15 @@ class ConteudosTable extends Table {
                 ->allowEmpty('descricao');
 
         $validator
-                ->scalar('anexo_img')
                 ->allowEmpty('anexo_img');
 
         $validator
-                ->scalar('anexo_doc')
                 ->allowEmpty('anexo_doc');
+
+        $validator
+                ->scalar('pasta')
+                ->requirePresence('pasta', 'create')
+                ->allowEmpty('pasta');
 
         $validator
                 ->scalar('explicacao_geral')
@@ -98,9 +110,16 @@ class ConteudosTable extends Table {
      * @return \Cake\ORM\RulesChecker
      */
     public function buildRules(RulesChecker $rules) {
-        $rules->add($rules->existsIn(['conteudo_id'], 'Conteudos'));
-
         return $rules;
+    }
+
+    public function listConteudosPrincipais() {
+        $this->recursive = -1;
+        return $this->find('list', ['conditions' => ['Conteudos.conteudo_id IS NULL'], 'order' => 'Conteudos.ordem ASC']);
+    }
+
+    public static function getPastaConteudos() {
+        return date('m/d');
     }
 
 }

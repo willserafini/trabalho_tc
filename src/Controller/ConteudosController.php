@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\AreaProfessorController;
+use App\Model\Table\ConteudosTable;
 
 /**
  * Conteudos Controller
@@ -53,6 +54,7 @@ class ConteudosController extends AreaProfessorController {
         $conteudo = $this->Conteudos->newEntity();
         if ($this->request->is('post')) {
             $conteudo = $this->Conteudos->patchEntity($conteudo, $this->request->getData());
+            $conteudo->pasta = ConteudosTable::getPastaConteudos();
             if ($this->Conteudos->save($conteudo)) {
                 $this->Flash->success(__('The conteudo has been saved.'));
 
@@ -61,7 +63,7 @@ class ConteudosController extends AreaProfessorController {
             $this->Flash->error(__('The conteudo could not be saved. Please, try again.'));
         }
         
-        $this->set('conteudos', $this->Conteudos->find('list'));
+        $this->set('conteudos', $this->Conteudos->listConteudosPrincipais());
         $this->set(compact('conteudo'));
         $this->set('_serialize', ['conteudo']);
     }
@@ -78,7 +80,7 @@ class ConteudosController extends AreaProfessorController {
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $conteudo = $this->Conteudos->patchEntity($conteudo, $this->request->getData());
+            $conteudo = $this->Conteudos->patchEntity($conteudo, $this->request->getData());            
             if ($this->Conteudos->save($conteudo)) {
                 $this->Flash->success(__('The conteudo has been saved.'));
 
@@ -87,7 +89,7 @@ class ConteudosController extends AreaProfessorController {
             $this->Flash->error(__('The conteudo could not be saved. Please, try again.'));
         }
         
-        $this->set('conteudos', $this->Conteudos->find('list'));
+        $this->set('conteudos', $this->Conteudos->listConteudosPrincipais());
         $this->set(compact('conteudo'));
         $this->set('_serialize', ['conteudo']);
     }
