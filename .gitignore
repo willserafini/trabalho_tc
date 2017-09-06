@@ -33,3 +33,4 @@ nbproject/* # NetBeans
 .vscode # Visual Studio Code
 .sass-cache/ # Sass preprocessor
 /nbproject/*
+webroot/uploads/*
