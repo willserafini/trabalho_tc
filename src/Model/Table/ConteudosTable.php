@@ -117,6 +117,47 @@ class ConteudosTable extends Table {
         $this->recursive = -1;
         return $this->find('list', ['conditions' => ['Conteudos.conteudo_id IS NULL'], 'order' => 'Conteudos.ordem ASC']);
     }
+    
+    private function getConteudosPrincipais() {
+        $this->recursive = -1;
+        $query = $this->find('all', ['conditions' => ['Conteudos.conteudo_id IS NULL'], 'order' => 'Conteudos.ordem ASC']);
+        $conteudos = $query->all();
+        return $conteudos->toArray();
+    }
+    
+    public function getFullConteudos() {
+        $conteudosPai = $this->getConteudosPrincipais();
+
+        foreach ($conteudosPai as &$conteudo) {
+            $subConteudos = $this->getSubConteudos($conteudo->id);
+            if (!count($subConteudos)) {
+                continue;
+            }
+
+            $conteudo['SubConteudos'] = $subConteudos;
+        }
+        
+        return $conteudosPai;
+    }
+    
+    public function getSubConteudos($conteudo_id) {
+        $this->recursive = -1; //verificar
+        $query = $this->find('all', ['conditions' => ['Conteudos.conteudo_id' => $conteudo_id], 'order' => 'Conteudos.ordem ASC']);
+
+        $subs = $query->all();
+
+        $subsArray = $subs->toArray();
+        /*foreach ($subsArray as &$sub) {
+            $subConteudo = $this->getSubMenus($sub->id);
+            if (!count($subConteudo)) {
+                continue;
+            }
+            
+            $sub['SubConteudos'] = $subConteudo;
+        }*/
+        
+        return $subsArray;
+    }
 
     public static function getPastaConteudos() {
         return date('m/d');
