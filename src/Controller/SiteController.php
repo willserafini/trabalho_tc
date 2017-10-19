@@ -11,10 +11,13 @@ use App\Model\Table\AlunosTable;
  * Site Controller
  */
 class SiteController extends AreaAlunoController {
+    
+    public $helpers = array('Conteudos');
 
     public function initialize() {
         parent::initialize();
-        $this->Alunos = $this->loadModel('Alunos');
+        $this->Alunos = $this->loadModel('Alunos');        
+        $this->Conteudos = $this->loadModel('Conteudos');
     }
 
     public function beforeFilter(Event $event) {
@@ -76,6 +79,8 @@ class SiteController extends AreaAlunoController {
 
     public function index() {
         $this->_checkIsECACalculado();
+        $this->set('conteudos', $this->Conteudos->getFullConteudos());
+        //debug($conteudos);exit;
     }
 
 }
