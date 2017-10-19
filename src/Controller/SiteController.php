@@ -80,7 +80,13 @@ class SiteController extends AreaAlunoController {
     public function index() {
         $this->_checkIsECACalculado();
         $this->set('conteudos', $this->Conteudos->getFullConteudos());
-        //debug($conteudos);exit;
+    }
+    
+    public function conteudo() {
+        $idConteudo = $this->request->query('id');
+        $conteudo = $this->Conteudos->get($idConteudo);
+        $this->set(compact('conteudo'));
+        //debug($conteudo);exit;
     }
 
 }

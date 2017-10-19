@@ -50,6 +50,7 @@
         </nav>
         <?= $this->Flash->render() ?>
         <div class="container clearfix">
+            <div class="centered-text"><h1>Algoritmos</h1></div>
             <?= $this->fetch('content') ?>
         </div>
         <footer>
