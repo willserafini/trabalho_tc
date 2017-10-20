@@ -11,12 +11,12 @@ use App\Model\Table\AlunosTable;
  * Site Controller
  */
 class SiteController extends AreaAlunoController {
-    
+
     public $helpers = array('Conteudos');
 
     public function initialize() {
         parent::initialize();
-        $this->Alunos = $this->loadModel('Alunos');        
+        $this->Alunos = $this->loadModel('Alunos');
         $this->Conteudos = $this->loadModel('Conteudos');
     }
 
@@ -81,12 +81,24 @@ class SiteController extends AreaAlunoController {
         $this->_checkIsECACalculado();
         $this->set('conteudos', $this->Conteudos->getFullConteudos());
     }
-    
+
     public function conteudo() {
         $idConteudo = $this->request->query('id');
-        $conteudo = $this->Conteudos->get($idConteudo);
+        $conteudo = $this->Conteudos->get($idConteudo, [
+            'contain' => ['ConteudoPai']
+        ]);
         $this->set(compact('conteudo'));
-        //debug($conteudo);exit;
+    }
+
+    public function download_doc($idConteudo) {
+        $conteudo = $this->Conteudos->get($idConteudo);
+        $file_path = WWW_ROOT . 'uploads/Conteudos/anexo_doc/' . $conteudo->pasta . '/' . $conteudo->anexo_doc;
+        $this->response->file($file_path, array(
+            'download' => true,
+            'name' => $conteudo->anexo_doc,
+        ));
+        
+        return $this->response;
     }
 
 }
