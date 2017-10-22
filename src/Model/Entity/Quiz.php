@@ -1,21 +1,21 @@
 <?php
+
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
-use Cake\Auth\DefaultPasswordHasher;
 
 /**
- * Professore Entity
+ * Quiz Entity
  *
  * @property int $id
- * @property string $nome
- * @property string $email
- * @property string $senha
+ * @property int $conteudo_id
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
+ *
+ * @property \App\Model\Entity\Conteudo $conteudo
+ * @property \App\Model\Entity\Pergunta[] $perguntas
  */
-class Professore extends Entity
-{
+class Quiz extends Entity {
 
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -30,8 +30,5 @@ class Professore extends Entity
         '*' => true,
         'id' => false
     ];
-    
-    protected function _setSenha($senha) {
-        return (new DefaultPasswordHasher())->hash($senha);
-    }
+
 }

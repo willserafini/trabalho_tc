@@ -99,3 +99,27 @@ msgstr "Imagem"
 
 msgid "Anexo Doc"
 msgstr "Documento"
+
+msgid "Add Quiz"
+msgstr "Adicionar Quiz"
+
+msgid "List Quizzes"
+msgstr "Listar Quizzes"
+
+msgid "Edit Quiz"
+msgstr "Editar Quiz"
+
+msgid "Delete Quiz"
+msgstr "Remover Quiz"
+
+msgid "New Quiz"
+msgstr "Novo Quiz"
+
+msgid "Related Perguntas"
+msgstr "Perguntas"
+
+msgid "The quiz has been saved."
+msgstr "Quiz salvo com sucesso."
+
+msgid "The quiz has been deleted."
+msgstr "Quiz removido com sucesso."
