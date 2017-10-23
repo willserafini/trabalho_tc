@@ -123,3 +123,9 @@ msgstr "Quiz salvo com sucesso."
 
 msgid "The quiz has been deleted."
 msgstr "Quiz removido com sucesso."
+
+msgid "Num Questao"
+msgstr "Número da Questão"
+
+msgid "Questao"
+msgstr "Questão"

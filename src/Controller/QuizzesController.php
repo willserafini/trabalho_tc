@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\AreaProfessorController;
+use Cake\Datasource\ConnectionManager;
 
 /**
  * Quizzes Controller
@@ -52,14 +53,19 @@ class QuizzesController extends AreaProfessorController {
     public function add() {
         $quiz = $this->Quizzes->newEntity();
         if ($this->request->is('post')) {
-            $quiz = $this->Quizzes->patchEntity($quiz, $this->request->getData());
-            if ($this->Quizzes->save($quiz)) {
+            try {
+                $conn = ConnectionManager::get('default');
+                $conn->begin();
+                $this->Quizzes->salvar($this->request->getData());
+                $conn->commit();
                 $this->Flash->success(__('The quiz has been saved.'));
-
                 return $this->redirect(['action' => 'index']);
+            } catch (Exception $e) {
+                $conn->rollback();
+                $this->Flash->error($e->getMessage());
             }
-            $this->Flash->error(__('The quiz could not be saved. Please, try again.'));
         }
+
         $conteudos = $this->Quizzes->Conteudos->find('list', ['limit' => 200]);
         $this->set(compact('quiz', 'conteudos'));
         $this->set('_serialize', ['quiz']);

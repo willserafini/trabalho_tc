@@ -71,7 +71,7 @@ class SiteController extends AreaAlunoController {
                 $this->Alunos->salvarECA($this->getIdUsuarioLogado(), $eca, $eca_obs);
                 $this->Flash->success('Seu ECA é ' . AlunosTable::getNomeEca($eca));
                 return $this->redirect(['action' => 'index']);
-            } catch (Exception $ex) {
+            } catch (Exception $e) {
                 $this->Flash->error($e->getMessage());
             }
         }
@@ -97,8 +97,52 @@ class SiteController extends AreaAlunoController {
             'download' => true,
             'name' => $conteudo->anexo_doc,
         ));
-        
+
         return $this->response;
+    }
+
+    public function proximo_conteudo($conteudoAtualId) {
+        $conteudoAtual = $this->Conteudos->get($conteudoAtualId, [
+            'contain' => ['ConteudoPai']
+        ]);
+        $conteudosFilho = $this->Conteudos->getSubConteudos($conteudoAtual->conteudo_id);
+        $indexProximoConteudo = '';
+        foreach ($conteudosFilho as $index => $conteudoFilho) {
+            if ($conteudoFilho->id == $conteudoAtualId) {
+                $indexProximoConteudo = $index + 1;
+                if (!isset($conteudosFilho[$indexProximoConteudo])) {
+                    $this->Flash->success('Parabéns, você finalizou o Conteúdo ' . $conteudoAtual->conteudo_pai->nome . '!');
+                    return $this->redirect(['action' => 'index']);
+                }
+
+                return $this->redirect([
+                            'action' => 'conteudo',
+                            '?' => ['id' => $conteudosFilho[$indexProximoConteudo]->id]
+                ]);
+            }
+        }
+    }
+    
+    public function conteudo_anterior($conteudoAtualId) {
+        $conteudoAtual = $this->Conteudos->get($conteudoAtualId, [
+            'contain' => ['ConteudoPai']
+        ]);
+        $conteudosFilho = $this->Conteudos->getSubConteudos($conteudoAtual->conteudo_id);
+        $indexProximoConteudo = '';
+        foreach ($conteudosFilho as $index => $conteudoFilho) {
+            if ($conteudoFilho->id == $conteudoAtualId) {
+                $indexConteudoAnterior = $index - 1;
+                if (!isset($conteudosFilho[$indexConteudoAnterior])) {
+                    $this->Flash->success('Não há mais conteúdo anterior do Conteúdo Pai ' . $conteudoAtual->conteudo_pai->nome);
+                    return $this->redirect(['action' => 'index']);
+                }
+
+                return $this->redirect([
+                            'action' => 'conteudo',
+                            '?' => ['id' => $conteudosFilho[$indexConteudoAnterior]->id]
+                ]);
+            }
+        }
     }
 
 }

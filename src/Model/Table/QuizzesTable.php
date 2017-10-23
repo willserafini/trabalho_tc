@@ -76,4 +76,11 @@ class QuizzesTable extends Table {
         return $rules;
     }
 
+    public function salvar($dados) {
+        $quiz = $this->newEntity($dados);
+        if (!$this->save($quiz)) {
+            throw new Exception('Não foi possível salvar o quiz!');
+        }
+    }
+
 }
