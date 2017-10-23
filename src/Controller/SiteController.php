@@ -122,27 +122,5 @@ class SiteController extends AreaAlunoController {
             }
         }
     }
-    
-    public function conteudo_anterior($conteudoAtualId) {
-        $conteudoAtual = $this->Conteudos->get($conteudoAtualId, [
-            'contain' => ['ConteudoPai']
-        ]);
-        $conteudosFilho = $this->Conteudos->getSubConteudos($conteudoAtual->conteudo_id);
-        $indexProximoConteudo = '';
-        foreach ($conteudosFilho as $index => $conteudoFilho) {
-            if ($conteudoFilho->id == $conteudoAtualId) {
-                $indexConteudoAnterior = $index - 1;
-                if (!isset($conteudosFilho[$indexConteudoAnterior])) {
-                    $this->Flash->success('Não há mais conteúdo anterior do Conteúdo Pai ' . $conteudoAtual->conteudo_pai->nome);
-                    return $this->redirect(['action' => 'index']);
-                }
-
-                return $this->redirect([
-                            'action' => 'conteudo',
-                            '?' => ['id' => $conteudosFilho[$indexConteudoAnterior]->id]
-                ]);
-            }
-        }
-    }
 
 }

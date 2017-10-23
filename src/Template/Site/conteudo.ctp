@@ -2,7 +2,7 @@
     <h3><?= $conteudo->conteudo_pai->nome . ' - ' . $conteudo->nome; ?></h3>
     <table class="vertical-table">   
         <tr>
-            <td style="text-align: left;"><?= $this->Html->link('Conteúdo Anterior', '/site/conteudo_anterior/' . $conteudo->id); ?></td>
+            <td style="text-align: left;"><?= $this->Html->link('Menu', '/index'); ?></td>
             <td><?= $this->Html->link('Próximo Conteúdo', '/site/proximo_conteudo/' . $conteudo->id); ?></td>            
         </tr>
     </table>
@@ -18,7 +18,7 @@
             <td><?= $this->Html->link('Documento Auxiliar', '/site/download_doc/' . $conteudo->id); ?></td>
         </tr>
         <tr>
-            <td style="text-align: left;"><?= $this->Html->link('Conteúdo Anterior', '/site/conteudo_anterior/' . $conteudo->id); ?></td>
+            <td style="text-align: left;"><?= $this->Html->link('Menu', '/index'); ?></td>
             <td><?= $this->Html->link('Próximo Conteúdo', '/site/proximo_conteudo/' . $conteudo->id); ?></td> 
         </tr>
     </table>
