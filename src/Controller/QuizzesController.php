@@ -21,7 +21,7 @@ class QuizzesController extends AreaProfessorController {
      */
     public function index() {
         $this->paginate = [
-            'contain' => ['Conteudos']
+            'contain' => ['Conteudos' => 'ConteudoPai']
         ];
         $quizzes = $this->paginate($this->Quizzes);
 

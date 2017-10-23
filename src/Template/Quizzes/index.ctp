@@ -17,7 +17,6 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('conteudo_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -26,8 +25,7 @@
             <?php foreach ($quizzes as $quiz): ?>
                 <tr>
                     <td><?= $this->Number->format($quiz->id) ?></td>
-                    <td><?= $quiz->has('conteudo') ? $this->Html->link($quiz->conteudo->nome, ['controller' => 'Conteudos', 'action' => 'view', $quiz->conteudo->id]) : '' ?></td>
-                    <td><?= h($quiz->created) ?></td>
+                    <td><?= $quiz->has('conteudo') ? $this->Html->link($quiz->conteudo->conteudo_pai->nome . '-' . $quiz->conteudo->nome, ['controller' => 'Conteudos', 'action' => 'view', $quiz->conteudo->id]) : '' ?></td>
                     <td><?= h($quiz->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $quiz->id]) ?>
