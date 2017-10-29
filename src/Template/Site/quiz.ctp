@@ -6,10 +6,12 @@
 
     <?= $this->Form->create(); ?>
     <div class="panel">
-        <?php foreach ($quiz->perguntas as $index => $pergunta) : ?>
+        <?php foreach ($quizPerguntas as $index => $pergunta) : ?>
             <p>Pergunta <?= $pergunta->num_questao ?>. <?= $pergunta->questao ?></p>
+            <?= $this->Form->hidden('AlunoResposta.' . $index . '.id', ['value' => $pergunta->aluno_resposta_id]); ?>
+            <?= $this->Form->hidden('AlunoResposta.' . $index . '.quiz_id', ['value' => $pergunta->quiz_id]); ?>
             <?= $this->Form->hidden('AlunoResposta.' . $index . '.pergunta_id', ['value' => $pergunta->id]); ?>
-            <?= $this->Form->control('AlunoResposta.' . $index . '.resposta', ['type' => 'textarea']); ?>
+            <?= $this->Form->control('AlunoResposta.' . $index . '.resposta', ['type' => 'textarea', 'value' => $pergunta->respostaAluno]); ?>
             <br />
         <?php endforeach; ?>
     </div>

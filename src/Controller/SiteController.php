@@ -6,6 +6,7 @@ use App\Controller\AreaAlunoController;
 use Cake\Event\Event;
 use App\Lib\IdentificarECA;
 use App\Model\Table\AlunosTable;
+use Cake\Datasource\ConnectionManager;
 
 /**
  * Site Controller
@@ -19,6 +20,8 @@ class SiteController extends AreaAlunoController {
         $this->Alunos = $this->loadModel('Alunos');
         $this->Conteudos = $this->loadModel('Conteudos');
         $this->Quizzes = $this->loadModel('Quizzes');
+        $this->AlunoRespostas = $this->loadModel('AlunoRespostas');
+        $this->Perguntas = $this->loadModel('Perguntas');
     }
 
     public function beforeFilter(Event $event) {
@@ -105,9 +108,13 @@ class SiteController extends AreaAlunoController {
     public function proximo_conteudo($conteudoAtualId) {
         $quizId = $this->Conteudos->conteudoTemQuiz($conteudoAtualId);
         if ($quizId) {
-            return $this->redirect(['action' => 'quiz', $quizId]);
+            return $this->redirect(['action' => 'quiz', $quizId, $conteudoAtualId]);
         }
+        
+        $this->irParaProximoConteudo($conteudoAtualId);
+    }
 
+    private function irParaProximoConteudo($conteudoAtualId) {
         $conteudoAtual = $this->Conteudos->get($conteudoAtualId, [
             'contain' => ['ConteudoPai']
         ]);
@@ -129,13 +136,24 @@ class SiteController extends AreaAlunoController {
         }
     }
 
-    public function quiz($quizId) {
-        $quiz = $this->Quizzes->get($quizId, [
-            'contain' => ['Perguntas']
-        ]);
+    public function quiz($quizId, $conteudoAtualId) {
+        if ($this->request->is('post')) {
+            try {
+                $conn = ConnectionManager::get('default');
+                $conn->begin();
+                $this->AlunoRespostas->salvarRespostasAluno($this->request->getData(), $this->getIdUsuarioLogado());
+                $conn->commit();
+                $this->Flash->success(__('Respostas salvas com sucesso!'));
+                $this->irParaProximoConteudo($conteudoAtualId);
+            } catch (Exception $e) {
+                $conn->rollback();
+                $this->Flash->error($e->getMessage());
+            }
+        }
 
-        $this->set('quiz', $quiz);
-        $this->set('_serialize', ['quiz']);
+        $quizPerguntas = $this->Perguntas->getPerguntasERespostasAluno($quizId, $this->getIdUsuarioLogado());
+
+        $this->set('quizPerguntas', $quizPerguntas);
     }
 
 }

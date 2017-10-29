@@ -6,6 +6,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\ORM\TableRegistry;
 
 /**
  * Perguntas Model
@@ -21,7 +22,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Pergunta findOrCreate($search, callable $callback = null, $options = [])
  */
 class PerguntasTable extends Table {
-    
+
     const TIPO_DISSERTATIVA = 1;
     const TIPO_OBJETIVA = 2;
 
@@ -89,11 +90,35 @@ class PerguntasTable extends Table {
 
         return $rules;
     }
-    
+
+    public function getPerguntasERespostasAluno($quizId, $alunoId) {
+        $ModelAlunoRespostas = TableRegistry::get('AlunoRespostas');
+        $this->recursive = -1;
+        $queryPerguntas = $this->find('all', ['conditions' => ['Perguntas.quiz_id' => $quizId]])->all()->toArray();
+        
+        foreach ($queryPerguntas as &$pergunta) {
+            $options = [
+                'conditions' => [
+                    'AlunoRespostas.aluno_id' => $alunoId,
+                    'AlunoRespostas.quiz_id' => $quizId,
+                    'AlunoRespostas.pergunta_id' => $pergunta->id
+                ]
+            ];
+            $respostaDoAluno = $ModelAlunoRespostas->find('all', $options)->first();
+            $pergunta->respostaAluno = $pergunta->aluno_resposta_id = '';
+            if(!empty($respostaDoAluno)) {
+                $pergunta->respostaAluno = $respostaDoAluno->resposta;
+                $pergunta->aluno_resposta_id = $respostaDoAluno->id;
+            }            
+        }
+
+        return $queryPerguntas;
+    }
+
     public static function getTipos() {
-        return [            
+        return [
             self::TIPO_DISSERTATIVA => 'Dissertativa',
-            //self::TIPO_OBJETIVA => 'Objetiva'
+                //self::TIPO_OBJETIVA => 'Objetiva'
         ];
     }
 

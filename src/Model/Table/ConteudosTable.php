@@ -180,12 +180,12 @@ class ConteudosTable extends Table {
      */
     public function conteudoTemQuiz($conteudoId) {
         $ModelQuizzes = TableRegistry::get('Quizzes');
-        $quiz = $ModelQuizzes->find('all', ['conditions' => [ 'Quizzes.conteudo_id' => $conteudoId]])->first()->toArray();
+        $quiz = $ModelQuizzes->find('all', ['conditions' => [ 'Quizzes.conteudo_id' => $conteudoId]])->first();
         if (empty($quiz)) {
             return false;
         }
         
-        return $quiz['id'];
+        return $quiz->id;
     }
 
 }
