@@ -49,8 +49,9 @@
             </section>
         </nav>
         <?= $this->Flash->render() ?>
-        <div class="container clearfix">
-            <div class="centered-text"><h1>Algoritmos</h1></div>
+        <div class="container clearfix">            
+            <div class="index large-4 medium-4 large-offset-4 medium-offset-4 columns"><h1>Algoritmos</h1></div>
+            <div class="clearfix"></div>
             <?= $this->fetch('content') ?>
         </div>
         <footer>

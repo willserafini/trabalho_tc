@@ -6,6 +6,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\ORM\TableRegistry;
 
 /**
  * Conteudos Model
@@ -117,14 +118,18 @@ class ConteudosTable extends Table {
         $this->recursive = -1;
         return $this->find('list', ['conditions' => ['Conteudos.conteudo_id IS NULL'], 'order' => 'Conteudos.ordem ASC']);
     }
-    
+
     private function getConteudosPrincipais() {
         $this->recursive = -1;
         $query = $this->find('all', ['conditions' => ['Conteudos.conteudo_id IS NULL'], 'order' => 'Conteudos.ordem ASC']);
         $conteudos = $query->all();
         return $conteudos->toArray();
     }
-    
+
+    /**
+     * 
+     * @return array com Conteudos Pais e seus respectivos conteudos filhos
+     */
     public function getFullConteudos() {
         $conteudosPai = $this->getConteudosPrincipais();
 
@@ -136,10 +141,15 @@ class ConteudosTable extends Table {
 
             $conteudo['SubConteudos'] = $subConteudos;
         }
-        
+
         return $conteudosPai;
     }
-    
+
+    /**
+     * 
+     * @param int $conteudo_id
+     * @return array com conteudos filhos
+     */
     public function getSubConteudos($conteudo_id) {
         $this->recursive = -1; //verificar
         $query = $this->find('all', ['conditions' => ['Conteudos.conteudo_id' => $conteudo_id], 'order' => 'Conteudos.ordem ASC']);
@@ -147,20 +157,35 @@ class ConteudosTable extends Table {
         $subs = $query->all();
 
         $subsArray = $subs->toArray();
-        /*foreach ($subsArray as &$sub) {
-            $subConteudo = $this->getSubMenus($sub->id);
-            if (!count($subConteudo)) {
-                continue;
-            }
-            
-            $sub['SubConteudos'] = $subConteudo;
-        }*/
-        
+        /* foreach ($subsArray as &$sub) {
+          $subConteudo = $this->getSubMenus($sub->id);
+          if (!count($subConteudo)) {
+          continue;
+          }
+
+          $sub['SubConteudos'] = $subConteudo;
+          } */
+
         return $subsArray;
     }
 
     public static function getPastaConteudos() {
         return date('m/d');
+    }
+
+    /**
+     * 
+     * @param int $conteudoId
+     * @return false se nao tem quiz, se tiver retorna o id do quiz
+     */
+    public function conteudoTemQuiz($conteudoId) {
+        $ModelQuizzes = TableRegistry::get('Quizzes');
+        $quiz = $ModelQuizzes->find('all', ['conditions' => [ 'Quizzes.conteudo_id' => $conteudoId]])->first()->toArray();
+        if (empty($quiz)) {
+            return false;
+        }
+        
+        return $quiz['id'];
     }
 
 }

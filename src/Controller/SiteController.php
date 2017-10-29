@@ -18,6 +18,7 @@ class SiteController extends AreaAlunoController {
         parent::initialize();
         $this->Alunos = $this->loadModel('Alunos');
         $this->Conteudos = $this->loadModel('Conteudos');
+        $this->Quizzes = $this->loadModel('Quizzes');
     }
 
     public function beforeFilter(Event $event) {
@@ -102,6 +103,11 @@ class SiteController extends AreaAlunoController {
     }
 
     public function proximo_conteudo($conteudoAtualId) {
+        $quizId = $this->Conteudos->conteudoTemQuiz($conteudoAtualId);
+        if ($quizId) {
+            return $this->redirect(['action' => 'quiz', $quizId]);
+        }
+
         $conteudoAtual = $this->Conteudos->get($conteudoAtualId, [
             'contain' => ['ConteudoPai']
         ]);
@@ -121,6 +127,15 @@ class SiteController extends AreaAlunoController {
                 ]);
             }
         }
+    }
+
+    public function quiz($quizId) {
+        $quiz = $this->Quizzes->get($quizId, [
+            'contain' => ['Perguntas']
+        ]);
+
+        $this->set('quiz', $quiz);
+        $this->set('_serialize', ['quiz']);
     }
 
 }
