@@ -6,6 +6,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\ORM\TableRegistry;
 
 /**
  * Alunos Model
@@ -107,9 +108,46 @@ class AlunosTable extends Table {
 
         $aluno->eca_compreensao = $eca_compreensao;
         $aluno->eca_obs = $eca_obs;
-        if(!$this->save($aluno)) {
+        if (!$this->save($aluno)) {
             throw new Exception('Não foi possível salvar o ECA!');
         }
+
+        if ($eca_compreensao == self::ECA_SEQUENCIAL) {
+            $this->salvaPrimeiroConteudoParaAluno($alunoId);
+        }
+    }
+
+    private function salvaPrimeiroConteudoParaAluno($alunoId) {
+        $this->Conteudos = TableRegistry::get('Conteudos');
+        $conteudos = $this->Conteudos->getFullConteudos();
+        $this->cadastraConteudoEstudado($conteudos[0]->id, $alunoId);
+    }
+
+    public function cadastraConteudoEstudado($conteudoId, $alunoId) {
+        $modelAlunoConteudos = TableRegistry::get('AlunoConteudos');
+        $query = $modelAlunoConteudos->find('all', [
+            'conditions' => [
+                'AlunoConteudos.conteudo_id' => $conteudoId,
+                'AlunoConteudos.aluno_id' => $alunoId
+            ],
+        ]);
+        $alunoEstudouConteudo = $query->first();
+        if (!empty($alunoEstudouConteudo)) {
+            return;
+        }
+
+        $objAlunoConteudos = $modelAlunoConteudos->newEntity();
+        $objAlunoConteudos->aluno_id = $alunoId;
+        $objAlunoConteudos->conteudo_id = $conteudoId;
+        if (!$modelAlunoConteudos->save($objAlunoConteudos)) {
+            throw new Exception('Não foi possível salvar o conteúdo para o aluno!');
+        }
+        
+        //$this->Conteudos = TableRegistry::get('Conteudos');        
+        $conteudosFilho = $modelAlunoConteudos->conteudos->getSubConteudos($conteudoId);
+        debug($objAlunoConteudos);
+        debug($conteudoId);
+        debug($conteudosFilho);exit;
     }
 
     public static function getCursos() {

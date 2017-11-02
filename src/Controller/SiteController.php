@@ -91,6 +91,12 @@ class SiteController extends AreaAlunoController {
         $conteudo = $this->Conteudos->get($idConteudo, [
             'contain' => ['ConteudoPai']
         ]);
+        $conteudo->nomeCompleto = '';
+        if (!empty($conteudo->conteudo_pai)) {
+            $conteudo->nomeCompleto .= $conteudo->conteudo_pai->nome . ' - ';
+        }
+
+        $conteudo->nomeCompleto .= $conteudo->nome;
         $this->set(compact('conteudo'));
     }
 
@@ -106,11 +112,12 @@ class SiteController extends AreaAlunoController {
     }
 
     public function proximo_conteudo($conteudoAtualId) {
+        $this->Alunos->cadastraConteudoEstudado($conteudoAtualId, $this->getIdUsuarioLogado());
         $quizId = $this->Conteudos->conteudoTemQuiz($conteudoAtualId);
         if ($quizId) {
             return $this->redirect(['action' => 'quiz', $quizId, $conteudoAtualId]);
         }
-        
+
         $this->irParaProximoConteudo($conteudoAtualId);
     }
 
@@ -118,6 +125,14 @@ class SiteController extends AreaAlunoController {
         $conteudoAtual = $this->Conteudos->get($conteudoAtualId, [
             'contain' => ['ConteudoPai']
         ]);
+        if (empty($conteudoAtual->conteudo_id)) { //significa que é um conteúdo pai
+            $conteudosFilho = $this->Conteudos->getSubConteudos($conteudoAtual->id);
+            return $this->redirect([
+                        'action' => 'conteudo',
+                        '?' => ['id' => $conteudosFilho[0]->id]
+            ]);
+        }
+
         $conteudosFilho = $this->Conteudos->getSubConteudos($conteudoAtual->conteudo_id);
         $indexProximoConteudo = '';
         foreach ($conteudosFilho as $index => $conteudoFilho) {
