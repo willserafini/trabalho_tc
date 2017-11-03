@@ -14,6 +14,8 @@ use App\Model\Table\ConteudosTable;
  */
 class ConteudosController extends AreaProfessorController {
 
+    public $components = array('RequestHandler');
+
     /**
      * Index method
      *
@@ -23,7 +25,7 @@ class ConteudosController extends AreaProfessorController {
         $this->paginate = [
             'contain' => ['ConteudoPai']
         ];
-        
+
         $conteudos = $this->paginate($this->Conteudos);
         $this->set(compact('conteudos'));
         $this->set('_serialize', ['conteudos']);
@@ -62,7 +64,7 @@ class ConteudosController extends AreaProfessorController {
             }
             $this->Flash->error(__('The conteudo could not be saved. Please, try again.'));
         }
-        
+
         $this->set('conteudos', $this->Conteudos->listConteudosPrincipais());
         $this->set(compact('conteudo'));
         $this->set('_serialize', ['conteudo']);
@@ -80,7 +82,7 @@ class ConteudosController extends AreaProfessorController {
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $conteudo = $this->Conteudos->patchEntity($conteudo, $this->request->getData());            
+            $conteudo = $this->Conteudos->patchEntity($conteudo, $this->request->getData());
             if ($this->Conteudos->save($conteudo)) {
                 $this->Flash->success(__('The conteudo has been saved.'));
 
@@ -88,7 +90,7 @@ class ConteudosController extends AreaProfessorController {
             }
             $this->Flash->error(__('The conteudo could not be saved. Please, try again.'));
         }
-        
+
         $this->set('conteudos', $this->Conteudos->listConteudosPrincipais());
         $this->set(compact('conteudo'));
         $this->set('_serialize', ['conteudo']);
@@ -111,6 +113,19 @@ class ConteudosController extends AreaProfessorController {
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function getConteudosAnterioresAjax() {
+        $this->viewBuilder()->setLayout('ajax');
+        $conteudoPaiId = $this->request->query['conteudoPaiId'];
+        if(empty($conteudoPaiId)) {
+            $conteudoAnteriores = $this->Conteudos->listConteudosPrincipais();
+        } else {
+            $conteudoAnteriores = $this->Conteudos->listSubConteudos($conteudoPaiId);
+        }
+        
+        echo json_encode($conteudoAnteriores);
+        exit();
     }
 
 }

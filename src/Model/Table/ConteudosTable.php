@@ -45,6 +45,10 @@ class ConteudosTable extends Table {
             'className' => 'Conteudos',
             'foreignKey' => 'conteudo_id'
         ]);
+        $this->belongsTo('ConteudoAnterior', [
+            'className' => 'Conteudos',
+            'foreignKey' => 'conteudo_anterior_id'
+        ]);
         $this->hasMany('ConteudoFilho', [
             'className' => 'Conteudos',
             'foreignKey' => 'conteudo_id',
@@ -167,6 +171,11 @@ class ConteudosTable extends Table {
           } */
 
         return $subsArray;
+    }
+    
+    public function listSubConteudos($conteudo_id) {
+        $this->recursive = -1;
+        return $this->find('list', ['conditions' => ['Conteudos.conteudo_id' => $conteudo_id], 'order' => 'Conteudos.ordem ASC']);
     }
 
     public static function getPastaConteudos() {

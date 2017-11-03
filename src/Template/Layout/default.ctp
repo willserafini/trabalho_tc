@@ -32,6 +32,9 @@
         <?= $this->fetch('meta') ?>
         <?= $this->fetch('css') ?>
         <?= $this->fetch('script') ?>
+        <script type="text/javascript">
+            window.URL_BASE = '<?php echo $this->Url->build('/'); ?>';
+        </script>
     </head>
     <body>
         <nav class="top-bar expanded" data-topbar role="navigation">
