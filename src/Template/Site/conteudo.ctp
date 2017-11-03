@@ -2,7 +2,6 @@
     <h3><?= $conteudo->nomeCompleto; ?></h3>
     <table class="vertical-table">   
         <tr>
-            <td style="text-align: left;"><?= $this->Html->link('Menu', '/index'); ?></td>
             <td><?= $this->Html->link('Próximo Conteúdo', '/site/proximo_conteudo/' . $conteudo->id); ?></td>            
         </tr>
     </table>
@@ -20,7 +19,6 @@
             </tr>
         <?php endif; ?>
         <tr>
-            <td style="text-align: left;"><?= $this->Html->link('Menu', '/index'); ?></td>
             <td><?= $this->Html->link('Próximo Conteúdo', '/site/proximo_conteudo/' . $conteudo->id); ?></td> 
         </tr>
     </table>

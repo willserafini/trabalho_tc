@@ -37,6 +37,7 @@ class SiteController extends AreaAlunoController {
     }
 
     public function login() {
+        $this->viewBuilder()->setLayout('login_aluno');
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
             if ($user) {
