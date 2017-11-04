@@ -120,22 +120,41 @@ class ConteudosTable extends Table {
 
     public function listConteudosPrincipais() {
         $this->recursive = -1;
-        return $this->find('list', ['conditions' => ['Conteudos.conteudo_id IS NULL'], 'order' => 'Conteudos.ordem ASC']);
+        return $this->find('list', ['conditions' => ['Conteudos.conteudo_id IS NULL'], 'order' => 'Conteudos.id ASC']);
     }
 
     private function getConteudosPrincipais() {
         $this->recursive = -1;
-        $query = $this->find('all', ['conditions' => ['Conteudos.conteudo_id IS NULL'], 'order' => 'Conteudos.ordem ASC']);
+        $query = $this->find('all', ['conditions' => ['Conteudos.conteudo_id IS NULL'], 'order' => 'Conteudos.id ASC']);
         $conteudos = $query->all();
         return $conteudos->toArray();
+    }
+    
+    public function getPrimeiroConteudo() {
+        return $this->find('all', ['conditions' => [ 'Conteudos.is_primeiro_conteudo' => 1]])->first();
+    }
+    
+    private function getConteudosEmOrdem($arrayConteudosPais, $conteudoAtualId) {        
+        $proximoConteudo = $this->find('all', ['conditions' => [ 'Conteudos.conteudo_anterior_id' => $conteudoAtualId]])->first();
+        if(empty($proximoConteudo)) {
+            return $arrayConteudosPais;
+        }
+        
+        $arrayConteudosPais[] = $proximoConteudo;        
+        return $this->getConteudosEmOrdem($arrayConteudosPais, $proximoConteudo->id);
     }
 
     /**
      * 
      * @return array com Conteudos Pais e seus respectivos conteudos filhos
      */
-    public function getFullConteudos() {
-        $conteudosPai = $this->getConteudosPrincipais();
+    public function getFullConteudos($retornarApenasConteudosPai = false) {
+        $primeiroConteudo = $this->getPrimeiroConteudo();        
+        $conteudosPai[0] = $primeiroConteudo;
+        $conteudosPai = $this->getConteudosEmOrdem($conteudosPai, $primeiroConteudo->id);
+        if($retornarApenasConteudosPai) {
+            return $conteudosPai;
+        }
 
         foreach ($conteudosPai as &$conteudo) {
             $subConteudos = $this->getSubConteudos($conteudo->id);
@@ -145,7 +164,7 @@ class ConteudosTable extends Table {
 
             $conteudo['SubConteudos'] = $subConteudos;
         }
-
+        
         return $conteudosPai;
     }
 
@@ -156,26 +175,21 @@ class ConteudosTable extends Table {
      */
     public function getSubConteudos($conteudo_id) {
         $this->recursive = -1; //verificar
-        $query = $this->find('all', ['conditions' => ['Conteudos.conteudo_id' => $conteudo_id], 'order' => 'Conteudos.ordem ASC']);
-
-        $subs = $query->all();
-
-        $subsArray = $subs->toArray();
-        /* foreach ($subsArray as &$sub) {
-          $subConteudo = $this->getSubMenus($sub->id);
-          if (!count($subConteudo)) {
-          continue;
-          }
-
-          $sub['SubConteudos'] = $subConteudo;
-          } */
-
-        return $subsArray;
+        $primeiroSub = $this->find('all', ['conditions' => [
+            'Conteudos.conteudo_id' => $conteudo_id,
+            'Conteudos.conteudo_anterior_id IS NULL']])->first();
+        if(empty($primeiroSub)) {
+            return [];
+        }
+        
+        $arraySubConteudos[0] = $primeiroSub;
+        $arraySubConteudos = $this->getConteudosEmOrdem($arraySubConteudos, $primeiroSub->id);
+        return $arraySubConteudos;
     }
     
     public function listSubConteudos($conteudo_id) {
         $this->recursive = -1;
-        return $this->find('list', ['conditions' => ['Conteudos.conteudo_id' => $conteudo_id], 'order' => 'Conteudos.ordem ASC']);
+        return $this->find('list', ['conditions' => ['Conteudos.conteudo_id' => $conteudo_id], 'order' => 'Conteudos.id ASC']);
     }
 
     public static function getPastaConteudos() {

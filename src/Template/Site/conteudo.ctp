@@ -5,7 +5,7 @@
             <td><?= $this->Html->link('Próximo Conteúdo', '/site/proximo_conteudo/' . $conteudo->id); ?></td>            
         </tr>
     </table>
-    <div class="row">
+    <div class="row descricaoConteudo">
         <h4><?= __('Descricao') ?></h4>
         <?= $this->Text->autoParagraph(h($conteudo->descricao)); ?>
     </div>

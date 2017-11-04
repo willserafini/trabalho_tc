@@ -50,6 +50,7 @@ class SiteController extends AreaAlunoController {
     }
 
     public function nova_conta() {
+        $this->viewBuilder()->setLayout('login_aluno');
         $aluno = $this->Alunos->newEntity();
         if ($this->request->is('post')) {
             $aluno = $this->Alunos->patchEntity($aluno, $this->request->data);
@@ -70,6 +71,7 @@ class SiteController extends AreaAlunoController {
     }
 
     public function calcular_eca() {
+        $this->viewBuilder()->setLayout('login_aluno');
         if ($this->request->is('post')) {
             try {
                 list($eca, $eca_obs) = (new IdentificarECA())->indetificar($this->request->data);
@@ -128,6 +130,12 @@ class SiteController extends AreaAlunoController {
         ]);
         if (empty($conteudoAtual->conteudo_id)) { //significa que é um conteúdo pai
             $conteudosFilho = $this->Conteudos->getSubConteudos($conteudoAtual->id);
+            if (empty($conteudosFilho)) {
+                $this->Alunos->cadastraProximoConteudoPaiDisponivel($conteudoAtual->id, $this->getIdUsuarioLogado());
+                $this->Flash->success('Parabéns, você finalizou o Conteúdo ' . $conteudoAtual->nome . '!');
+                return $this->redirect(['action' => 'index']);
+            }
+
             return $this->redirect([
                         'action' => 'conteudo',
                         '?' => ['id' => $conteudosFilho[0]->id]
@@ -140,6 +148,7 @@ class SiteController extends AreaAlunoController {
             if ($conteudoFilho->id == $conteudoAtualId) {
                 $indexProximoConteudo = $index + 1;
                 if (!isset($conteudosFilho[$indexProximoConteudo])) {
+                    $this->Alunos->cadastraProximoConteudoPaiDisponivel($conteudoAtual->conteudo_pai->id, $this->getIdUsuarioLogado());
                     $this->Flash->success('Parabéns, você finalizou o Conteúdo ' . $conteudoAtual->conteudo_pai->nome . '!');
                     return $this->redirect(['action' => 'index']);
                 }

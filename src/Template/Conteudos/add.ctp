@@ -11,14 +11,14 @@
     <fieldset>
         <legend><?= __('Add Conteudo') ?></legend>
         <?php
-            echo $this->Form->control('conteudo_id', array('empty' => true));
+            echo $this->Form->control('conteudo_id', array('label' => 'Conteúdo Pai', 'empty' => true));
             echo $this->Form->control('conteudo_anterior_id', array('empty' => true));
             echo $this->Form->control('nome');
             echo $this->Form->control('descricao');
             echo $this->Form->control('anexo_img', ['type' => 'file']);
             echo $this->Form->control('anexo_doc', ['type' => 'file']);
             echo $this->Form->control('explicacao_geral');
-            echo $this->Form->control('ordem', ['value' => 0]);
+            echo $this->Form->control('is_primeiro_conteudo');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

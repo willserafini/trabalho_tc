@@ -119,8 +119,8 @@ class AlunosTable extends Table {
 
     private function salvaPrimeiroConteudoParaAluno($alunoId) {
         $this->Conteudos = TableRegistry::get('Conteudos');
-        $conteudos = $this->Conteudos->getFullConteudos();
-        $this->cadastraConteudoEstudado($conteudos[0]->id, $alunoId);
+        $primeiroConteudoDisponivel = $this->Conteudos->getPrimeiroConteudo();
+        $this->cadastraConteudoEstudado($primeiroConteudoDisponivel->id, $alunoId);
     }
 
     public function cadastraConteudoEstudado($conteudoId, $alunoId) {
@@ -142,12 +142,29 @@ class AlunosTable extends Table {
         if (!$modelAlunoConteudos->save($objAlunoConteudos)) {
             throw new Exception('Não foi possível salvar o conteúdo para o aluno!');
         }
+    }
+    
+    public function cadastraProximoConteudoPaiDisponivel($conteudoPaiId, $alunoId) {
+        $modelConteudos = TableRegistry::get('Conteudos');
+        $conteudosPai = $modelConteudos->getFullConteudos(true);
+        $indexProximoConteudoPaiDisponivel = '';
+        foreach ($conteudosPai as $index => $conteudoPai) {
+            if($conteudoPaiId == $conteudoPai->id) {
+                $indexProximoConteudoPaiDisponivel = $index + 1;
+                break;
+            }
+        }
         
-        //$this->Conteudos = TableRegistry::get('Conteudos');        
-        $conteudosFilho = $modelAlunoConteudos->conteudos->getSubConteudos($conteudoId);
-        debug($objAlunoConteudos);
-        debug($conteudoId);
-        debug($conteudosFilho);exit;
+        if(!isset($conteudosPai[$indexProximoConteudoPaiDisponivel])) {
+            return;
+        }
+        
+        $this->cadastraConteudoEstudado($conteudosPai[$indexProximoConteudoPaiDisponivel]->id, $alunoId);
+    }
+    
+    public function getEcaAluno($alunoId) {
+        $aluno = $this->get($alunoId);
+        return $aluno->eca_compreensao;
     }
 
     public static function getCursos() {
