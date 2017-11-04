@@ -9,18 +9,15 @@
 </section>
 
 <section id="tm-section-2" class="row tm-section">
-    <div class="tm-white-curve-right col-xs-12 col-sm-6 col-md-6 col-lg-7 col-xl-6">
-        <div class="tm-white-curve-left col-xs-12 col-sm-12 col-md-12 col-lg-7 col-xl-6">
-            <div class="tm-white-curve-text">
-                <h2 class="tm-section-header blue-text">Quizzes</h2>
-
-                <ul class="">
-                    <li>Quiz 1</li>
-                    <li>Quiz 2</li>
-                </ul>
-            </div>                        
-        </div>
-
+    <div class="tm-white-curve-left col-xs-12 col-sm-12 col-md-12 col-lg-7 col-xl-6">
+        <div class="tm-white-curve-text">
+            <h2 class="tm-section-header blue-text">Quizzes</h2>
+            <ul class="">
+                <?php foreach ($quizzes as $quiz): ?>                    
+                    <li><a href="<?= $this->Url->build('/quiz/' . $quiz->id); ?>">Quiz do Conteúdo <?= $quiz->conteudo->nome ?></a></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>                        
     </div>
 </section>
 

@@ -53,7 +53,8 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/index', ['controller' => 'Site', 'action' => 'index']);
     $routes->connect('/login', ['controller' => 'Site', 'action' => 'login']);
     $routes->connect('/nova_conta', ['controller' => 'Site', 'action' => 'nova_conta']);
-    $routes->connect('/area_professor', ['controller' => 'Professores', 'action' => 'index']);
+    $routes->connect('/quiz/*', ['controller' => 'Site', 'action' => 'quiz']);
+    $routes->connect('/area_professor', ['controller' => 'Professores', 'action' => 'index']);    
 
     /**
      * ...and connect the rest of 'Pages' controller's URLs.

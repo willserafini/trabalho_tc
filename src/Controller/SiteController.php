@@ -87,6 +87,7 @@ class SiteController extends AreaAlunoController {
     public function index() {
         $this->_checkIsECACalculado();
         $this->set('conteudos', $this->Conteudos->getFullConteudos());
+        $this->set('quizzes', $this->Quizzes->getQuizzesDisponiveis($this->getIdUsuarioLogado()));
     }
 
     public function conteudo() {
@@ -161,7 +162,7 @@ class SiteController extends AreaAlunoController {
         }
     }
 
-    public function quiz($quizId, $conteudoAtualId) {
+    public function quiz($quizId, $conteudoAtualId = '') {
         if ($this->request->is('post')) {
             try {
                 $conn = ConnectionManager::get('default');
@@ -169,6 +170,10 @@ class SiteController extends AreaAlunoController {
                 $this->AlunoRespostas->salvarRespostasAluno($this->request->getData(), $this->getIdUsuarioLogado());
                 $conn->commit();
                 $this->Flash->success(__('Respostas salvas com sucesso!'));
+                if (empty($conteudoAtualId)) {
+                    return $this->redirect(['action' => 'index']);
+                }
+                
                 $this->irParaProximoConteudo($conteudoAtualId);
             } catch (Exception $e) {
                 $conn->rollback();

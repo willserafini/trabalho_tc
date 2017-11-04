@@ -6,6 +6,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\ORM\TableRegistry;
 
 /**
  * Quizzes Model
@@ -81,6 +82,34 @@ class QuizzesTable extends Table {
         if (!$this->save($quiz)) {
             throw new Exception('Não foi possível salvar o quiz!');
         }
+    }
+    
+    public function getQuizzesDisponiveis($alunoId) {
+        $quizzes = $this->find('all')->contain(['Conteudos']);
+        $quizzesDisponiveis = [];
+        foreach ($quizzes as $quiz) {
+            if($this->alunoJaEstudouConteudo($alunoId, $quiz->conteudo_id)) {
+                $quizzesDisponiveis[] = $quiz;
+            }
+        }
+        
+        return $quizzesDisponiveis;
+    }
+    
+    private function alunoJaEstudouConteudo($alunoId, $conteudoId) {
+        $modelAlunoConteudos = TableRegistry::get('AlunoConteudos');
+        $query = $modelAlunoConteudos->find('all', [
+            'conditions' => [
+                'AlunoConteudos.conteudo_id' => $conteudoId,
+                'AlunoConteudos.aluno_id' => $alunoId
+            ],
+        ]);
+        $alunoEstudouConteudo = $query->first();
+        if (!empty($alunoEstudouConteudo)) {
+            return true;
+        }
+        
+        return false;
     }
 
 }
