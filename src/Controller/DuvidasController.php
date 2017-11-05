@@ -21,6 +21,9 @@ class DuvidasController extends AreaProfessorController {
      */
     public function index() {
         $this->paginate = [
+            'conditions' => [
+                'Duvidas.feedback_professor IS NULL'
+            ],
             'contain' => ['Alunos']
         ];
         $duvidas = $this->paginate($this->Duvidas);

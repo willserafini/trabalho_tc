@@ -8,13 +8,13 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $conteudo_id
+ * @property int conteudo_anterior_id
  * @property string $nome
  * @property string $descricao
  * @property string $anexo_img
  * @property string $anexo_doc
  * @property string $pasta
  * @property string $explicacao_geral
- * @property int $ordem
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *

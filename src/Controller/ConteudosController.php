@@ -40,7 +40,7 @@ class ConteudosController extends AreaProfessorController {
      */
     public function view($id = null) {
         $conteudo = $this->Conteudos->get($id, [
-            'contain' => ['ConteudoPai', 'ConteudoFilho']
+            'contain' => ['ConteudoPai', 'ConteudoFilho', 'ConteudoAnterior']
         ]);
 
         $this->set('conteudo', $conteudo);

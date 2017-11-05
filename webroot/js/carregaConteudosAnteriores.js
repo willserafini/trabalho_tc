@@ -22,8 +22,12 @@ var carregaConteudosAnteriores = {
         $.each(conteudoAnteriores, function (idConteudo, conteudoNome) {
             optionsSelectConteudoAnterior += '<option value="' + idConteudo + '">' + conteudoNome + '</option>';
         });
-        
+
+        var valorDefault = $('#conteudo-anterior-id').data('default');
         $('#conteudo-anterior-id').html(optionsSelectConteudoAnterior);
+        if (typeof valorDefault !== 'undefined') {
+            $('#conteudo-anterior-id').val(valorDefault);
+        }
 
     }
 };

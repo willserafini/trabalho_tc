@@ -18,7 +18,6 @@
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('conteudo_id', 'Conteúdo Pai') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('ordem') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -29,7 +28,6 @@
                 <td><?= $this->Number->format($conteudo->id) ?></td>
                 <td><?php echo $conteudo->conteudo_pai ? $conteudo->conteudo_pai->nome : ''; ?>&nbsp;</td>
                 <td><?= h($conteudo->nome) ?></td>
-                <td><?= $this->Number->format($conteudo->ordem) ?></td>
                 <td><?= h($conteudo->created->format('d/m/Y H:i:s')) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $conteudo->id]) ?>

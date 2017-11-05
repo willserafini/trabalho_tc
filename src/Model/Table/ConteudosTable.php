@@ -52,7 +52,7 @@ class ConteudosTable extends Table {
         $this->hasMany('ConteudoFilho', [
             'className' => 'Conteudos',
             'foreignKey' => 'conteudo_id',
-            'sort' => ['ConteudoFilho.ordem' => 'ASC']
+            'sort' => ['ConteudoFilho.id' => 'ASC']
         ]);
 
         $this->addBehavior('Josegonzalez/Upload.Upload', [
@@ -83,7 +83,8 @@ class ConteudosTable extends Table {
 
         $validator
                 ->scalar('descricao')
-                ->allowEmpty('descricao');
+                ->requirePresence('descricao', 'create')
+                ->notEmpty('descricao');
 
         $validator
                 ->allowEmpty('anexo_img');
@@ -98,11 +99,8 @@ class ConteudosTable extends Table {
 
         $validator
                 ->scalar('explicacao_geral')
-                ->allowEmpty('explicacao_geral');
-
-        $validator
-                ->integer('ordem')
-                ->allowEmpty('ordem');
+                ->requirePresence('explicacao_geral', 'create')
+                ->notEmpty('explicacao_geral');
 
         return $validator;
     }

@@ -23,6 +23,10 @@
         <tr>
             <th scope="row"><?= __('Conteudo Id') ?></th>
             <td><?php echo $conteudo->conteudo_pai ? $conteudo->conteudo_pai->nome : ''; ?>&nbsp;</td>
+        </tr>        
+        <tr>
+            <th scope="row"><?= __('Conteudo Anterior') ?></th>
+            <td><?php echo $conteudo->conteudo_anterior ? $conteudo->conteudo_anterior->nome : ''; ?>&nbsp;</td>
         </tr>
         <tr>
             <th scope="row"><?= __('Nome') ?></th>
@@ -35,10 +39,6 @@
         <tr>
             <th scope="row"><?= __('Anexo Doc') ?></th>
             <td><?= h($conteudo->anexo_doc) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Ordem') ?></th>
-            <td><?= $this->Number->format($conteudo->ordem) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Created') ?></th>

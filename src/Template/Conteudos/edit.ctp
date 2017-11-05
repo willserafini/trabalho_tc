@@ -1,8 +1,4 @@
-<?php
-/**
-  * @var \App\View\AppView $this
-  */
-?>
+<?php $this->Html->script('carregaConteudosAnteriores', ['block' => true]); ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
@@ -22,12 +18,13 @@
         <legend><?= __('Edit Conteudo') ?></legend>
         <?php
             echo $this->Form->control('conteudo_id', array('empty' => true, 'label' => 'Conteúdo Pai'));
+            echo $this->Form->control('conteudo_anterior_id', array('empty' => true, 'data-default' => $conteudo->conteudo_anterior_id));
             echo $this->Form->control('nome');
             echo $this->Form->control('descricao');
             echo $this->Form->control('anexo_img', ['type' => 'file']);
             echo $this->Form->control('anexo_doc', ['type' => 'file']);
             echo $this->Form->control('explicacao_geral');
-            echo $this->Form->control('ordem');
+            echo $this->Form->control('is_primeiro_conteudo');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
