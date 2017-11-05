@@ -7,6 +7,7 @@ use Cake\Event\Event;
 use App\Lib\IdentificarECA;
 use App\Model\Table\AlunosTable;
 use Cake\Datasource\ConnectionManager;
+use Cake\Mailer\Email;
 
 /**
  * Site Controller
@@ -22,6 +23,7 @@ class SiteController extends AreaAlunoController {
         $this->Quizzes = $this->loadModel('Quizzes');
         $this->AlunoRespostas = $this->loadModel('AlunoRespostas');
         $this->Perguntas = $this->loadModel('Perguntas');
+        $this->Duvidas = $this->loadModel('Duvidas');
     }
 
     public function beforeFilter(Event $event) {
@@ -88,6 +90,7 @@ class SiteController extends AreaAlunoController {
         $this->_checkIsECACalculado();
         $this->set('conteudos', $this->Conteudos->getFullConteudos());
         $this->set('quizzes', $this->Quizzes->getQuizzesDisponiveis($this->getIdUsuarioLogado()));
+        $this->set('duvidas', $this->Duvidas->getDuvidasCadastradas($this->getIdUsuarioLogado()));
     }
 
     public function conteudo() {
@@ -173,7 +176,7 @@ class SiteController extends AreaAlunoController {
                 if (empty($conteudoAtualId)) {
                     return $this->redirect(['action' => 'index']);
                 }
-                
+
                 $this->irParaProximoConteudo($conteudoAtualId);
             } catch (Exception $e) {
                 $conn->rollback();
@@ -184,6 +187,44 @@ class SiteController extends AreaAlunoController {
         $quizPerguntas = $this->Perguntas->getPerguntasERespostasAluno($quizId, $this->getIdUsuarioLogado());
 
         $this->set('quizPerguntas', $quizPerguntas);
+    }
+
+    public function cadastrar_duvida() {
+        $duvida = $this->Duvidas->newEntity();
+        if ($this->request->is('post')) {
+            $duvida = $this->Duvidas->patchEntity($duvida, $this->request->getData());
+            $duvida->aluno_id = $this->getIdUsuarioLogado();
+            if ($this->Duvidas->save($duvida)) {
+                $this->mandaEmailAvisandoProfessor($duvida);
+                $this->Flash->success(__('The duvida has been saved.'));
+                return $this->redirect(['action' => 'index#tm-section-3']);
+            }
+
+            $this->Flash->error(__('The duvida could not be saved. Please, try again.'));
+        }
+
+        $this->set(compact('duvida'));
+        $this->set('_serialize', ['duvida']);
+    }
+
+    public function duvida($duvidaId) {
+        $duvida = $this->Duvidas->get($duvidaId, [
+            'contain' => ['Alunos']
+        ]);
+
+        $this->set('duvida', $duvida);
+    }
+
+    private function mandaEmailAvisandoProfessor($duvida) {
+        $email = new Email();
+        $email->from(['williantcc2017@gmail.com' => 'Ambiente']);
+        $email->to('willian.serafini@gmail.com');
+        $email->setSubject('Nova Dúvida cadastrada');
+        $msg = "Olá Professor, foi cadastrado uma nova dúvida no ambiente.\n"
+                . "Por favor, acesse ....  \n\n";
+        $msg .= "Assunto: " . $duvida->assunto . "\n";
+        $msg .= "Mensagem: " . $duvida->mensagem;
+        $email->send($msg);
     }
 
 }

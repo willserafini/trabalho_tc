@@ -53,6 +53,8 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/index', ['controller' => 'Site', 'action' => 'index']);
     $routes->connect('/login', ['controller' => 'Site', 'action' => 'login']);
     $routes->connect('/nova_conta', ['controller' => 'Site', 'action' => 'nova_conta']);
+    $routes->connect('/cadastrar_duvida', ['controller' => 'Site', 'action' => 'cadastrar_duvida']);
+    $routes->connect('/duvida/*', ['controller' => 'Site', 'action' => 'duvida']);
     $routes->connect('/quiz/*', ['controller' => 'Site', 'action' => 'quiz']);
     $routes->connect('/area_professor', ['controller' => 'Professores', 'action' => 'index']);    
 

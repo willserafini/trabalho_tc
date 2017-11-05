@@ -135,3 +135,21 @@ msgstr "É o Primeiro Conteúdo?"
 
 msgid "Conteudo Anterior"
 msgstr "Conteúdo Anterior"
+
+msgid "The duvida has been saved."
+msgstr "Dúvida salvo com sucesso."
+
+msgid "The duvida could not be saved. Please, try again."
+msgstr "Dúvida não pode ser salva. Por favor, tente novamente."
+
+msgid "Duvidas"
+msgstr "Dúvidas"
+
+msgid "Duvida"
+msgstr "Dúvida"
+
+msgid "List Alunos"
+msgstr "Listar Alunos"
+
+msgid "List Duvidas"
+msgstr "Listar Dúvidas"

@@ -60,8 +60,9 @@
                         </div>
                     </nav>    
                     <?php if ($loggedIn) : ?>
-                            <p><?= $this->Html->link('Logout', ['controller' => 'site', 'action' => 'logout']); ?></p>
-                        <?php endif; ?>
+                        <p>Olá <?= $this->request->session()->read('Auth')['Aluno']['nome'] ?>! <br />
+                            <?= $this->Html->link('Logout', ['controller' => 'site', 'action' => 'logout']); ?></p>
+                    <?php endif; ?>
                     <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#tmNavbar">
                         &#9776;
                     </button>
@@ -83,7 +84,7 @@
 
         </div>
 
-        <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script><!-- Tether for Bootstrap, http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h --> 
+        <?= $this->Html->script('tether.min.js') ?>
         <?= $this->Html->script('bootstrap.min.js') ?>
         <?php //echo $this->Html->script('jquery.singlePageNav.min.js') ?>
 

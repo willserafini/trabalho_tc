@@ -86,6 +86,11 @@ class QuizzesTable extends Table {
     
     public function getQuizzesDisponiveis($alunoId) {
         $quizzes = $this->find('all')->contain(['Conteudos']);
+        $ecaAluno = TableRegistry::get('Alunos')->getEcaAluno($alunoId);
+        if($ecaAluno != AlunosTable::ECA_SEQUENCIAL) {
+            return $quizzes;
+        }
+        
         $quizzesDisponiveis = [];
         foreach ($quizzes as $quiz) {
             if($this->alunoJaEstudouConteudo($alunoId, $quiz->conteudo_id)) {

@@ -41,11 +41,6 @@
             <?php if ($loggedIn) : ?>
                 <ul class="title-area large-1 medium-2 columns">
                     <li class="name">
-                        <h1><?= $this->Html->link('Professores', ['controller' => 'professores', 'action' => 'index']); ?></h1>
-                    </li>
-                </ul>
-                <ul class="title-area large-1 medium-2 columns">
-                    <li class="name">
                         <h1><?= $this->Html->link('Alunos', ['controller' => 'alunos', 'action' => 'index']); ?></h1>
                     </li>
                 </ul>
@@ -57,6 +52,11 @@
                 <ul class="title-area large-1 medium-2 columns">
                     <li class="name">
                         <h1><?= $this->Html->link('Quizzes', ['controller' => 'quizzes', 'action' => 'index']); ?></h1>
+                    </li>
+                </ul>
+                <ul class="title-area large-1 medium-2 columns">
+                    <li class="name">
+                        <h1><?= $this->Html->link('Dúvidas', ['controller' => 'duvidas', 'action' => 'index']); ?></h1>
                     </li>
                 </ul>
             <?php endif; ?>
