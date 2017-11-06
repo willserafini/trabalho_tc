@@ -185,7 +185,6 @@ class SiteController extends AreaAlunoController {
         }
 
         $quizPerguntas = $this->Perguntas->getPerguntasERespostasAluno($quizId, $this->getIdUsuarioLogado());
-
         $this->set('quizPerguntas', $quizPerguntas);
     }
 

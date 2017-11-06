@@ -7,7 +7,8 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Quiz'), ['action' => 'add']) ?></li>        
+        <li><?= $this->Html->link(__('New Quiz'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Avaliar Aluno-Quiz'), ['action' => 'avaliar_aluno_quiz']) ?></li>        
     </ul>
 </nav>
 <div class="quizzes index large-9 medium-8 columns content">

@@ -134,7 +134,7 @@ msgid "Is Primeiro Conteudo"
 msgstr "É o Primeiro Conteúdo?"
 
 msgid "Conteudo Anterior"
-msgstr "Conteúdo Anterior"
+msgstr "Este conteúdo deve ser apresentado após"
 
 msgid "The duvida has been saved."
 msgstr "Dúvida salvo com sucesso."
@@ -153,3 +153,6 @@ msgstr "Listar Alunos"
 
 msgid "List Duvidas"
 msgstr "Listar Dúvidas"
+
+msgid "Obs"
+msgstr "Observação"
