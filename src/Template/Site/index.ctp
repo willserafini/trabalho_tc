@@ -15,9 +15,10 @@
             <ul class="">
                 <?php foreach ($quizzes as $quiz): ?>                    
                     <li>
-                        <a href="<?= $this->Url->build('/quiz/' . $quiz->id); ?>"><?= $quiz->nome ?></a>
                         <?php if ($quiz->is_avaliado) : ?>
-                            - Quiz avaliado. <a href="<?= $this->Url->build('/quiz_avaliado/' . $quiz->id); ?>">Clique aqui para ver o resultado!</a>
+                            <?= $quiz->nome ?> foi avaliado. <a href="<?= $this->Url->build('/quiz_avaliado/' . $quiz->id); ?>">Clique aqui para ver o resultado!</a>
+                        <?php else : ?>
+                            <a href="<?= $this->Url->build('/quiz/' . $quiz->id); ?>"><?= $quiz->nome ?></a>
                         <?php endif; ?>
 
                     </li>
