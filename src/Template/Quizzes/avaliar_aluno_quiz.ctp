@@ -10,7 +10,7 @@
     <fieldset>
         <legend><?= __('Avaliar Aluno em Quiz') ?></legend>
         <?php
-        echo $this->Form->control('quiz_id', ['options' => $quizzes, 'label' => 'Quiz do conteúdo']);
+        echo $this->Form->control('quiz_id', ['options' => $quizzes]);
         echo $this->Form->control('aluno_id');        
         ?>
     </fieldset>

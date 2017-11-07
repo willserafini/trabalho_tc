@@ -25,6 +25,10 @@
             <td><?= $quiz->has('conteudo') ? $this->Html->link($quiz->conteudo->nome, ['controller' => 'Conteudos', 'action' => 'view', $quiz->conteudo->id]) : '' ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Nome') ?></th>
+            <td><?= h($quiz->nome) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Created') ?></th>
             <td><?= h($quiz->created) ?></td>
         </tr>

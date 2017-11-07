@@ -36,7 +36,7 @@ class QuizzesTable extends Table {
         parent::initialize($config);
 
         $this->setTable('quizzes');
-        $this->setDisplayField('conteudo.nome');
+        $this->setDisplayField('nome');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
@@ -60,6 +60,11 @@ class QuizzesTable extends Table {
         $validator
                 ->integer('id')
                 ->allowEmpty('id', 'create');
+
+        $validator
+                ->scalar('nome')
+                ->requirePresence('nome', 'create')
+                ->notEmpty('nome');
 
         return $validator;
     }
@@ -85,7 +90,7 @@ class QuizzesTable extends Table {
     }
 
     public function getQuizzesDisponiveis($alunoId) {
-        $quizzes = $this->find('all')->contain(['Conteudos']);
+        $quizzes = $this->getQuizzes($alunoId);
         $ecaAluno = TableRegistry::get('Alunos')->getEcaAluno($alunoId);
         if ($ecaAluno != AlunosTable::ECA_SEQUENCIAL) {
             return $quizzes;
@@ -100,19 +105,28 @@ class QuizzesTable extends Table {
 
         return $quizzesDisponiveis;
     }
+    
+    private function getQuizzes($alunoId) {
+        $quizzes = $this->find('all')->toArray();
+        foreach ($quizzes as &$quiz) {
+            $quiz->is_avaliado = $this->alunoJaFoiAvaliado($alunoId, $quiz->id);
+        }
+        
+        return $quizzes;
+    }
 
     public function listAlunosQueNaoForamAvaliados($quizId) {
         $alunos = TableRegistry::get('Alunos')->find('list')->toArray();
-        
+
         foreach ($alunos as $alunoId => $aluno) {
             if ($this->alunoJaFoiAvaliado($alunoId, $quizId)) {
                 unset($alunos[$alunoId]);
             }
         }
-        
+
         return $alunos;
     }
-    
+
     private function alunoJaFoiAvaliado($alunoId, $quizId) {
         $modelAlunoQuizzes = TableRegistry::get('AlunoQuizzes');
         $query = $modelAlunoQuizzes->find('all', [
@@ -126,7 +140,7 @@ class QuizzesTable extends Table {
             return true;
         }
 
-        return false;        
+        return false;
     }
 
     public function buscaDadosRespostasAluno($alunoId, $quizId) {
@@ -156,6 +170,18 @@ class QuizzesTable extends Table {
                 throw new Exception('Não foi possível salvar a nota final!');
             }
         }
+    }
+
+    public function getNotasQuizzesAluno($alunoId) {
+        $modelAlunoQuizzes = TableRegistry::get('AlunoQuizzes');
+        $query = $modelAlunoQuizzes->find('all', [
+                    'conditions' => [
+                        'AlunoQuizzes.aluno_id' => $alunoId
+                    ],
+                    'fields' => ['AlunoQuizzes.nota_final', 'Quizzes.nome']
+                ])->contain(['Quizzes']);
+
+        return $query->toArray();
     }
 
     private function alunoJaEstudouConteudo($alunoId, $conteudoId) {

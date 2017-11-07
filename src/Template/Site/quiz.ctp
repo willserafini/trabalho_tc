@@ -1,6 +1,12 @@
 <div class="columns">
-    <h3>Quiz</h3>
+    <h3><?= $quiz->nome ?></h3>
 
+    <table class="vertical-table">   
+        <tr>
+            <td><?= $this->Html->link('Próximo Conteúdo', '/site/quiz_proximo_conteudo/' . $quiz->conteudo_id); ?></td>            
+        </tr>
+    </table>
+    
     <div class="clearfix"></div>
     <br />
 

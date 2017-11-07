@@ -95,7 +95,7 @@ class PerguntasTable extends Table {
         $ModelAlunoRespostas = TableRegistry::get('AlunoRespostas');
         $this->recursive = -1;
         $queryPerguntas = $this->find('all', ['conditions' => ['Perguntas.quiz_id' => $quizId]])->all()->toArray();
-        
+
         foreach ($queryPerguntas as &$pergunta) {
             $options = [
                 'conditions' => [
@@ -106,13 +106,40 @@ class PerguntasTable extends Table {
             ];
             $respostaDoAluno = $ModelAlunoRespostas->find('all', $options)->first();
             $pergunta->respostaAluno = $pergunta->aluno_resposta_id = '';
-            if(!empty($respostaDoAluno)) {
+            if (!empty($respostaDoAluno)) {
                 $pergunta->respostaAluno = $respostaDoAluno->resposta;
                 $pergunta->aluno_resposta_id = $respostaDoAluno->id;
-            }            
+            }
         }
 
         return $queryPerguntas;
+    }
+
+    public function getQuizAvaliado($quizId, $alunoId) {
+        $modelAlunoQuizzes = TableRegistry::get('AlunoQuizzes');
+        $queryAlunoQuizzes = $modelAlunoQuizzes->find('all', [
+                    'conditions' => [
+                        'AlunoQuizzes.aluno_id' => $alunoId,
+                        'AlunoQuizzes.quiz_id' => $quizId
+                    ]
+                ])->first();
+        
+        $retornarDados = ['notaFinal' => $queryAlunoQuizzes->nota_final];
+        $retornarDados['perguntas'] = $this->getPerguntasERespostasAluno($quizId, $alunoId);
+        
+        foreach ($retornarDados['perguntas'] as &$perguntaResposta) {
+            $queryAlunoQuizNota = $modelAlunoQuizzes->AlunoQuizRespostaNotas->find('all', [
+                        'conditions' => [
+                            'AlunoQuizRespostaNotas.aluno_quiz_id' => $queryAlunoQuizzes->id,
+                            'AlunoQuizRespostaNotas.aluno_resposta_id' => $perguntaResposta->aluno_resposta_id
+                        ]
+                    ])->first();
+
+            $perguntaResposta->nota = $queryAlunoQuizNota->nota;
+            $perguntaResposta->obs = $queryAlunoQuizNota->obs;
+        }
+
+        return $retornarDados;
     }
 
     public static function getTipos() {

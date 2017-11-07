@@ -8,7 +8,8 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Quiz'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('Avaliar Aluno-Quiz'), ['action' => 'avaliar_aluno_quiz']) ?></li>        
+        <li><?= $this->Html->link(__('Avaliar Aluno-Quiz'), ['action' => 'avaliar_aluno_quiz']) ?></li>
+        <li><?= $this->Html->link(__('Desempenho Aluno-Quizzes'), ['action' => 'desempenho_aluno_quizzes']) ?></li>        
     </ul>
 </nav>
 <div class="quizzes index large-9 medium-8 columns content">
@@ -18,6 +19,7 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('conteudo_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -27,6 +29,7 @@
                 <tr>
                     <td><?= $this->Number->format($quiz->id) ?></td>
                     <td><?= $quiz->has('conteudo') ? $this->Html->link($quiz->conteudo->conteudo_pai->nome . '-' . $quiz->conteudo->nome, ['controller' => 'Conteudos', 'action' => 'view', $quiz->conteudo->id]) : '' ?></td>
+                    <td><?= h($quiz->nome) ?></td>
                     <td><?= h($quiz->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $quiz->id]) ?>

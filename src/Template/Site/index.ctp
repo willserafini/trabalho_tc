@@ -14,7 +14,13 @@
             <h2 class="tm-section-header blue-text">Quizzes</h2>
             <ul class="">
                 <?php foreach ($quizzes as $quiz): ?>                    
-                    <li><a href="<?= $this->Url->build('/quiz/' . $quiz->id); ?>">Quiz do Conteúdo <?= $quiz->conteudo->nome ?></a></li>
+                    <li>
+                        <a href="<?= $this->Url->build('/quiz/' . $quiz->id); ?>"><?= $quiz->nome ?></a>
+                        <?php if ($quiz->is_avaliado) : ?>
+                            - Quiz avaliado. <a href="<?= $this->Url->build('/quiz_avaliado/' . $quiz->id); ?>">Clique aqui para ver o resultado!</a>
+                        <?php endif; ?>
+
+                    </li>
                 <?php endforeach; ?>
             </ul>
         </div>                        
@@ -32,9 +38,11 @@
                         <li>
                             <a href="<?= $this->Url->build('/duvida/' . $duvida->id); ?>">
                                 Assunto: <?= $duvida->assunto ?>
-                                <?php if(!empty($duvida->feedback_professor)) {
+                                <?php
+                                if (!empty($duvida->feedback_professor)) {
                                     echo ' - Dúvida foi Respondida!';
-                                } ?>
+                                }
+                                ?>
                             </a>
                         </li>
                     <?php endforeach; ?>

@@ -21,6 +21,7 @@
         <legend><?= __('Edit Quiz') ?></legend>
         <?php
             echo $this->Form->control('conteudo_id', ['options' => $conteudos]);
+            echo $this->Form->control('nome');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

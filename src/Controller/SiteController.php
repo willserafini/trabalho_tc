@@ -127,6 +127,10 @@ class SiteController extends AreaAlunoController {
 
         $this->irParaProximoConteudo($conteudoAtualId);
     }
+    
+    public function quiz_proximo_conteudo($conteudoAtualId) {
+        $this->irParaProximoConteudo($conteudoAtualId);
+    }
 
     private function irParaProximoConteudo($conteudoAtualId) {
         $conteudoAtual = $this->Conteudos->get($conteudoAtualId, [
@@ -185,6 +189,7 @@ class SiteController extends AreaAlunoController {
         }
 
         $quizPerguntas = $this->Perguntas->getPerguntasERespostasAluno($quizId, $this->getIdUsuarioLogado());
+        $this->set('quiz', $this->Quizzes->get($quizId));
         $this->set('quizPerguntas', $quizPerguntas);
     }
 
@@ -212,6 +217,12 @@ class SiteController extends AreaAlunoController {
         ]);
 
         $this->set('duvida', $duvida);
+    }
+    
+    public function quiz_avaliado($quizId) {
+        $quizAvaliado = $this->Perguntas->getQuizAvaliado($quizId, $this->getIdUsuarioLogado());
+        $this->set('quizNome', $this->Quizzes->get($quizId)->nome);
+        $this->set('quizPerguntas', $quizAvaliado);
     }
 
     private function mandaEmailAvisandoProfessor($duvida) {

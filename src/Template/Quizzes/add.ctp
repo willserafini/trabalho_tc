@@ -14,9 +14,12 @@
     <?= $this->Form->create($quiz) ?>
     <fieldset>
         <legend><?= __('Add Quiz') ?></legend>
-        <?php echo $this->Form->control('conteudo_id', ['options' => $conteudos]); ?>
+        <?php 
+        echo $this->Form->control('conteudo_id', ['options' => $conteudos]);
+        echo $this->Form->control('nome');
+        ?>
     </fieldset>
-    <h4>Perguntas</h4>
+    <h4>Perguntas do Quiz</h4>
     <div class="perguntas_quizzes">
         <div class="pergunta_padrao">
             <?php
@@ -31,5 +34,5 @@
     <a href="" class="addPergunta">Adicionar mais uma pergunta</a>
 
     <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<?= $this->Form->end() ?>
 </div>

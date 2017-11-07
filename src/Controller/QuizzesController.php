@@ -130,7 +130,7 @@ class QuizzesController extends AreaProfessorController {
             try {
                 $conn = ConnectionManager::get('default');
                 $conn->begin();
-                $this->Quizzes->salvarNota($this->request->getData(), $this->getIdUsuarioLogado());
+                $this->Quizzes->salvarNota($this->request->getData());
                 $conn->commit();
                 $this->Flash->success(__('Nota salva com sucesso!'));
                 return $this->redirect(['action' => 'avaliar_aluno_quiz']);
@@ -140,9 +140,17 @@ class QuizzesController extends AreaProfessorController {
             }
         }
 
-        $this->Alunos = $this->loadModel('Alunos');
         $quizzes = $this->Quizzes->find('list')->contain(['Conteudos']);
         $this->set(compact('quizzes'));
+    }
+    
+    public function desempenho_aluno_quizzes() {
+        if ($this->request->is('post')) {
+            $this->set('notasQuizzes', $this->Quizzes->getNotasQuizzesAluno($this->request->getData('aluno_id')));
+        }
+        
+        $this->Alunos = $this->loadModel('Alunos');
+        $this->set('alunos', $this->Alunos->find('list'));
     }
     
     public function getAlunosQueNaoForamAvaliadosAjax() {

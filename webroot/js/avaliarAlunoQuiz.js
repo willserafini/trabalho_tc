@@ -4,6 +4,10 @@ var avaliarAlunoQuiz = {
         $('#quiz-id').change(function () {
             avaliarAlunoQuiz.getAlunosQueNaoForamAvaliados();
         });
+        $('#CalcularNotaFinal').on('click', function(event) {
+            event.preventDefault();
+            avaliarAlunoQuiz.calcularNotaFinal();            
+        });
     },
     getAlunosQueNaoForamAvaliados: function () {
         var url = window.URL_BASE + 'quizzes/getAlunosQueNaoForamAvaliadosAjax?quizId=' + $('#quiz-id').val();
@@ -25,6 +29,14 @@ var avaliarAlunoQuiz = {
 
         $('#aluno-id').html(optionsSelectAlunos);
 
+    },
+    calcularNotaFinal: function () {
+        var notaFinal = 0;
+        $('.notaResposta').each(function() {
+            notaFinal += this.value * 1;
+        });
+        
+        $('#alunoquiz-nota-final').val(notaFinal);
     }
 };
 

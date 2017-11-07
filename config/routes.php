@@ -56,6 +56,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/cadastrar_duvida', ['controller' => 'Site', 'action' => 'cadastrar_duvida']);
     $routes->connect('/duvida/*', ['controller' => 'Site', 'action' => 'duvida']);
     $routes->connect('/quiz/*', ['controller' => 'Site', 'action' => 'quiz']);
+    $routes->connect('/quiz_avaliado/*', ['controller' => 'Site', 'action' => 'quiz_avaliado']);
     $routes->connect('/area_professor', ['controller' => 'Professores', 'action' => 'index']);    
 
     /**
