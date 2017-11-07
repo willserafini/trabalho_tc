@@ -10,6 +10,7 @@ var avaliarAlunoQuiz = {
         });
     },
     getAlunosQueNaoForamAvaliados: function () {
+        $('#aluno-id').html('<option value="">Carregando alunos...</option>');
         var url = window.URL_BASE + 'quizzes/getAlunosQueNaoForamAvaliadosAjax?quizId=' + $('#quiz-id').val();
         var promise = $.getJSON(url);
         promise.done(function (data) {

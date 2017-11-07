@@ -1,4 +1,4 @@
-<?php $this->Html->script('avaliarAlunoQuiz', ['block' => true]); ?>
+<?php $this->Html->script('avaliarAlunoQuiz.js?v=1', ['block' => true]); ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
