@@ -1,11 +1,21 @@
 var carregaConteudosAnteriores = {
     init: function () {
-        this.getConteudosAnteriores();
+        var isCheckedPrimeiroConteudo = $('#is-primeiro-conteudo').is(':checked');
+        this.getConteudosAnteriores(isCheckedPrimeiroConteudo);
         $('#conteudo-id').change(function () {
-            carregaConteudosAnteriores.getConteudosAnteriores();
+            carregaConteudosAnteriores.getConteudosAnteriores(isCheckedPrimeiroConteudo);
         });
+        
+        $('#is-primeiro-conteudo').click(function() {
+            carregaConteudosAnteriores.getConteudosAnteriores(this.checked);
+        })
     },
-    getConteudosAnteriores: function () {
+    getConteudosAnteriores: function (isPrimeiroConteudoChecked) {
+        if(isPrimeiroConteudoChecked) {
+            $('#conteudo-anterior-id').html('');
+            return false;
+        }
+        
         var url = window.URL_BASE + 'conteudos/getConteudosAnterioresAjax?conteudoPaiId=' + $('#conteudo-id').val();
         var promise = $.getJSON(url);
         promise.done(function (data) {
@@ -18,7 +28,8 @@ var carregaConteudosAnteriores = {
 
     },
     carregarConteudoAnteriores: function (conteudoAnteriores) {
-        var optionsSelectConteudoAnterior = '';
+        var optionsSelectConteudoAnterior = '<option value="">Nenhum</option>';
+        
         $.each(conteudoAnteriores, function (idConteudo, conteudoNome) {
             optionsSelectConteudoAnterior += '<option value="' + idConteudo + '">' + conteudoNome + '</option>';
         });
