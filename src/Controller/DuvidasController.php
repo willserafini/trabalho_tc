@@ -78,7 +78,7 @@ class DuvidasController extends AreaProfessorController {
         $email->to($duvida->aluno->email);
         $email->setSubject('Dúvida Respondida');
         $msg = "Olá " . $duvida->aluno->nome . ", sua dúvida foi respondida pelo professor.\n"
-                . "Por favor, acesse ....  \n\n";
+                . "Por favor, acesse https://willianserafini.000webhostapp.com/site/index#tm-section-3  \n\n";
         $email->send($msg);
     }
 

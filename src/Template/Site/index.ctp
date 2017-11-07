@@ -29,26 +29,24 @@
 </section>
 
 <section id="tm-section-3" class="row tm-section">
-    <div class="tm-white-curve-right col-xs-12 col-sm-6 col-md-6 col-lg-7 col-xl-6">
-        <div class="tm-white-curve-left col-xs-12 col-sm-12 col-md-12 col-lg-7 col-xl-6">
-            <div class="tm-white-curve-text">
-                <h2 class="tm-section-header blue-text">Dúvidas</h2>
-                <a href="<?= $this->Url->build('/cadastrar_duvida'); ?>">->Cadastrar Nova Dúvida</a>
-                <ul class="">
-                    <?php foreach ($duvidas as $duvida): ?>                    
-                        <li>
-                            <a href="<?= $this->Url->build('/duvida/' . $duvida->id); ?>">
-                                Assunto: <?= $duvida->assunto ?>
-                                <?php
-                                if (!empty($duvida->feedback_professor)) {
-                                    echo ' - Dúvida foi Respondida!';
-                                }
-                                ?>
-                            </a>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>   
-        </div>
+    <div class="tm-white-curve-left col-xs-12 col-sm-12 col-md-12 col-lg-7 col-xl-6">
+        <div class="tm-white-curve-text">
+            <h2 class="tm-section-header blue-text">Dúvidas</h2>
+            <a href="<?= $this->Url->build('/cadastrar_duvida'); ?>">->Cadastrar Nova Dúvida</a>
+            <ul class="">
+                <?php foreach ($duvidas as $duvida): ?>                    
+                    <li>
+                        <a href="<?= $this->Url->build('/duvida/' . $duvida->id); ?>">
+                            Assunto: <?= $duvida->assunto ?>
+                            <?php
+                            if (!empty($duvida->feedback_professor)) {
+                                echo ' - Dúvida foi Respondida!';
+                            }
+                            ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>   
     </div>
 </section>
