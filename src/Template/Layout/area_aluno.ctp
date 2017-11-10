@@ -31,10 +31,10 @@
 
         <?= $this->Html->css('templatemo-style.css') ?>
 
-        <?= $this->Html->script('jquery.min') ?>
-        <?= $this->Html->script('jquery-ui.min') ?>
+        <?= $this->Html->script('jquery.min') ?>        
         <?= $this->Html->script('tether.min.js') ?>
         <?= $this->Html->script('bootstrap.min.js') ?>
+        <?= $this->Html->script('jquery-ui.min') ?>
         <?php //echo $this->Html->script('jquery.singlePageNav.min.js') ?>
 
 
