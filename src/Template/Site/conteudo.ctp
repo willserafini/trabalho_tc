@@ -1,8 +1,32 @@
+<script>
+    $(function () {
+        $("#JanelaExplicacaoGeral").dialog({autoOpen: false});
+
+        $("#explicacaoConteudo").click(function () {
+            $("#JanelaExplicacaoGeral").dialog({
+                height: "auto",
+                width: '85%',
+                modal: true,
+                autoOpen: true,
+                position: {my: "center", at: "center", of: ".descricaoConteudo"}
+            });
+            return false;
+        });
+    });
+</script>
+
 <div class="conteudos view medium-12 columns content">
     <h3><?= $conteudo->nomeCompleto; ?></h3>
-    <table class="vertical-table">   
+    <table id="menusExplicaocaoProximo" class="vertical-table">   
         <tr>
-            <td><?= $this->Html->link('Próximo Conteúdo', '/site/proximo_conteudo/' . $conteudo->id); ?></td>            
+            <?php if ($ecaAluno == \App\Model\Table\AlunosTable::ECA_GLOBAL): ?>
+                <td style="text-align: left;"><?= $this->Html->link('Pré-explicação', '#', ['id' => 'explicacaoConteudo']); ?></td>
+
+            <div id="JanelaExplicacaoGeral" style="display: none;" title="Pré-explicação">
+                <?= $this->Text->autoParagraph(h($conteudo->explicacao_geral)); ?>
+            </div>
+        <?php endif; ?>            
+        <td><?= $this->Html->link('Próximo Conteúdo', '/site/proximo_conteudo/' . $conteudo->id); ?></td>            
         </tr>
     </table>
     <div class="row descricaoConteudo">

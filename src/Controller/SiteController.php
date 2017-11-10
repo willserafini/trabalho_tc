@@ -104,7 +104,8 @@ class SiteController extends AreaAlunoController {
         }
 
         $conteudo->nomeCompleto .= $conteudo->nome;
-        $this->set(compact('conteudo'));
+        $ecaAluno = $this->Alunos->getEcaAluno($this->getIdUsuarioLogado());
+        $this->set(compact('conteudo', 'ecaAluno'));
     }
 
     public function download_doc($idConteudo) {

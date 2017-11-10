@@ -157,10 +157,10 @@ p:last-child { margin-bottom: 0; }
 }
 
 
-#tm-section-1 {	background-image: url(../img/strip-bg-01.jpg); }
-#tm-section-2 {	background-image: url(../img/strip-bg-02.jpg); }
-#tm-section-3 {	background-image: url(../img/strip-bg-03.jpg); }
-#tm-section-4 {	background-image: url(../img/strip-bg-04.jpg); }
+#tm-section-1 {	 }
+#tm-section-2 {	 }
+#tm-section-3 {	 }
+#tm-section-4 {  }
 .tm-footer { 
 	background-image: url(../img/strip-bg-05.jpg);
 	font-weight: 300;
@@ -359,6 +359,10 @@ p:last-child { margin-bottom: 0; }
 
 textarea, h3 {
     color: rgba(0,0,0,0.75);
+}
+
+#JanelaExplicacaoGeral {
+    background-image: url(../img/strip-bg-05.jpg);
 }
 
 @media screen and (max-width: 1400px) {

@@ -22,19 +22,25 @@
             <?= $this->fetch('title') ?>
         </title>
         <?= $this->Html->meta('icon') ?>
-
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400">   <!-- Google web font "Open Sans" -->
 
         <?= $this->Html->css('base.css') ?>
-        <?= $this->Html->css('cake.css') ?>
+        <?= $this->Html->css('cake.css') ?>  
+        <?= $this->Html->css('jquery-ui.min.css') ?>        
+        <?= $this->Html->css('bootstrap.min.css') ?>
+
+        <?= $this->Html->css('templatemo-style.css') ?>
 
         <?= $this->Html->script('jquery.min') ?>
+        <?= $this->Html->script('jquery-ui.min') ?>
+        <?= $this->Html->script('tether.min.js') ?>
+        <?= $this->Html->script('bootstrap.min.js') ?>
+        <?php //echo $this->Html->script('jquery.singlePageNav.min.js') ?>
+
 
         <?= $this->fetch('meta') ?>
         <?= $this->fetch('css') ?>
-        <?= $this->fetch('script') ?>
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400">   <!-- Google web font "Open Sans" -->
-        <?= $this->Html->css('bootstrap.min.css') ?>
-        <?= $this->Html->css('templatemo-style.css') ?>                                <!-- Templatemo style -->
+        <?= $this->fetch('script') ?>        
     </head>
     <body>
         <?= $this->Flash->render() ?>
@@ -84,10 +90,6 @@
 
         </div>
 
-        <?= $this->Html->script('tether.min.js') ?>
-        <?= $this->Html->script('bootstrap.min.js') ?>
-        <?php //echo $this->Html->script('jquery.singlePageNav.min.js') ?>
-
         <!-- Templatemo scripts -->
         <script>
 
@@ -116,10 +118,10 @@
                     navbarHeight = smallNavbarHeight;
                 }
 
-                $('#tmNavbar').singlePageNav({
-                    'currentClass': "active",
-                    offset: navbarHeight
-                });
+                /*$('#tmNavbar').singlePageNav({
+                 'currentClass': "active",
+                 offset: navbarHeight
+                 });*/
 
 
                 /* Collapse menu after click 
@@ -138,10 +140,10 @@
                         navbarHeight = bigNavbarHeight;
                     }
 
-                    $('#tmNavbar').singlePageNav({
-                        'currentClass': "active",
-                        offset: navbarHeight
-                    });
+                    /*$('#tmNavbar').singlePageNav({
+                     'currentClass': "active",
+                     offset: navbarHeight
+                     });*/
                 });
 
 
