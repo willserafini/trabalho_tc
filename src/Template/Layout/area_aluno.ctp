@@ -35,6 +35,7 @@
         <?= $this->Html->script('tether.min.js') ?>
         <?= $this->Html->script('bootstrap.min.js') ?>
         <?= $this->Html->script('jquery-ui.min') ?>
+        <?= $this->Html->script('tinymce.min.js'); ?>
         <?php //echo $this->Html->script('jquery.singlePageNav.min.js') ?>
 
 
@@ -57,7 +58,7 @@
                                     <a class="nav-link" href="<?= $this->Url->build('/index'); ?>#tm-section-1">Conteúdos</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?= $this->Url->build('/index'); ?>#tm-section-2">Quizzes</a>
+                                    <a class="nav-link" href="<?= $this->Url->build('/index'); ?>#tm-section-2">Atividades</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="<?= $this->Url->build('/index'); ?>#tm-section-3">Dúvidas?</a>
@@ -67,7 +68,7 @@
                     </nav>    
                     <?php if ($loggedIn) : ?>
                         <p>Olá <?= $this->request->session()->read('Auth')['Aluno']['nome'] ?>! <br />
-                            <?= $this->Html->link('Logout', ['controller' => 'site', 'action' => 'logout']); ?></p>
+                            <?= $this->Html->link('Sair', ['controller' => 'site', 'action' => 'logout']); ?></p>
                     <?php endif; ?>
                     <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#tmNavbar">
                         &#9776;

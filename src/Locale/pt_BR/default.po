@@ -100,29 +100,32 @@ msgstr "Imagem"
 msgid "Anexo Doc"
 msgstr "Documento"
 
+msgid "Quizzes"
+msgstr "Atividades"
+
 msgid "Add Quiz"
-msgstr "Adicionar Quiz"
+msgstr "Adicionar Atividade"
 
 msgid "List Quizzes"
-msgstr "Listar Quizzes"
+msgstr "Listar Atividades"
 
 msgid "Edit Quiz"
-msgstr "Editar Quiz"
+msgstr "Editar Atividade"
 
 msgid "Delete Quiz"
-msgstr "Remover Quiz"
+msgstr "Remover Atividade"
 
 msgid "New Quiz"
-msgstr "Novo Quiz"
+msgstr "Nova Atividade"
 
 msgid "Related Perguntas"
 msgstr "Perguntas"
 
 msgid "The quiz has been saved."
-msgstr "Quiz salvo com sucesso."
+msgstr "Atividade salva com sucesso."
 
 msgid "The quiz has been deleted."
-msgstr "Quiz removido com sucesso."
+msgstr "Atividade removida com sucesso."
 
 msgid "Num Questao"
 msgstr "Número da Questão"

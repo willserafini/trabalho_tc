@@ -28,6 +28,7 @@
         <?= $this->Html->css('cake.css') ?>
 
         <?= $this->Html->script('jquery.min') ?>
+        <?= $this->Html->script('tinymce.min.js'); ?>
 
         <?= $this->fetch('meta') ?>
         <?= $this->fetch('css') ?>
@@ -51,7 +52,7 @@
                 </ul>
                 <ul class="title-area large-1 medium-2 columns">
                     <li class="name">
-                        <h1><?= $this->Html->link('Quizzes', ['controller' => 'quizzes', 'action' => 'index']); ?></h1>
+                        <h1><?= $this->Html->link('Atividades', ['controller' => 'quizzes', 'action' => 'index']); ?></h1>
                     </li>
                 </ul>
                 <ul class="title-area large-1 medium-2 columns">

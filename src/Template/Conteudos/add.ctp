@@ -1,4 +1,5 @@
 <?php $this->Html->script('carregaConteudosAnteriores', ['block' => true]); ?>
+<script>tinymce.init({ selector:'textarea' });</script>
 
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">

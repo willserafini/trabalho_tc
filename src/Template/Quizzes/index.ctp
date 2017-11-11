@@ -8,8 +8,8 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Quiz'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('Avaliar Aluno-Quiz'), ['action' => 'avaliar_aluno_quiz']) ?></li>
-        <li><?= $this->Html->link(__('Desempenho Aluno-Quizzes'), ['action' => 'desempenho_aluno_quizzes']) ?></li>        
+        <li><?= $this->Html->link(__('Avaliar Aluno-Atividade'), ['action' => 'avaliar_aluno_quiz']) ?></li>
+        <li><?= $this->Html->link(__('Desempenho Aluno-Atividades'), ['action' => 'desempenho_aluno_quizzes']) ?></li>        
     </ul>
 </nav>
 <div class="quizzes index large-9 medium-8 columns content">

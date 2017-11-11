@@ -9,7 +9,7 @@
         ?>
     </fieldset>
     <br />
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Enviar')) ?>
     <?= $this->Form->end() ?>
     <br />
 </div>

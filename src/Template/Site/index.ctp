@@ -11,7 +11,7 @@
 <section id="tm-section-2" class="row tm-section">
     <div class="tm-white-curve-left col-xs-12 col-sm-12 col-md-12 col-lg-7 col-xl-6">
         <div class="tm-white-curve-text">
-            <h2 class="tm-section-header blue-text">Quizzes</h2>
+            <h2 class="tm-section-header blue-text">Atividades</h2>
             <ul class="">
                 <?php foreach ($quizzes as $quiz): ?>                    
                     <li>

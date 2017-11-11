@@ -23,14 +23,14 @@
                 <td style="text-align: left;"><?= $this->Html->link('Pré-explicação', '#', ['id' => 'explicacaoConteudo']); ?></td>
 
             <div id="JanelaExplicacaoGeral" style="display: none;" title="Pré-explicação">
-                <?= $this->Text->autoParagraph(h($conteudo->explicacao_geral)); ?>
+                <?= $conteudo->explicacao_geral; ?>
             </div>
         <?php endif; ?>            
         <td><?= $this->Html->link('Próximo Conteúdo', '/site/proximo_conteudo/' . $conteudo->id); ?></td>            
         </tr>
     </table>
     <div class="row descricaoConteudo">
-        <?= $this->Text->autoParagraph(h($conteudo->descricao)); ?>
+        <?= $conteudo->descricao; ?>
     </div>
     <table class="vertical-table">   
         <tr>

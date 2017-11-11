@@ -25,7 +25,7 @@
             <?= $this->Form->hidden('AlunoResposta.' . $index . '.id', ['value' => $pergunta->aluno_resposta_id]); ?>
             <?= $this->Form->hidden('AlunoResposta.' . $index . '.quiz_id', ['value' => $pergunta->quiz_id]); ?>
             <?= $this->Form->hidden('AlunoResposta.' . $index . '.pergunta_id', ['value' => $pergunta->id]); ?>
-            <?= $this->Form->control('AlunoResposta.' . $index . '.resposta', ['type' => 'textarea', 'value' => $pergunta->respostaAluno, 'required' => true, 'readonly' => $readOnly]); ?>
+            <?= $this->Form->control('AlunoResposta.' . $index . '.resposta', ['rows' => 20, 'type' => 'textarea', 'value' => $pergunta->respostaAluno, 'required' => true, 'readonly' => $readOnly]); ?>
             <br />
         <?php endforeach; ?>
     </div>

@@ -42,7 +42,7 @@
         ?>
 
 
-        <strong>3 - Quando resolvo problemas de matemática, eu</strong>
+        <strong>3 - Quando resolvo problemas de Matemática, eu</strong>
         <?php
         echo $this->Form->input('q3', [
             'templates' => [
@@ -67,7 +67,7 @@
             'type' => 'radio',
             'options' => [
                 0 => 'penso nos incidentes e tento colocá-los juntos para identificar os temas.',
-                1 => 'tenho consciência dos temas quando termino a leitura e então tenho que voltar atrás
+                1 => 'tenho consciência dos temas quando termino a leitura e então, tenho que voltar atrás
 para encontrar os incidentes que os confirmem.'
             ],
             'required' => 'required',
@@ -83,7 +83,7 @@ para encontrar os incidentes que os confirmem.'
             ],
             'type' => 'radio',
             'options' => [
-                0 => 'apresente a matéria em etapas seqüências claras.',
+                0 => 'apresente a matéria em etapas sequências claras.',
                 1 => 'apresente um quadro geral e relacione a matéria com outros assuntos.'
             ],
             'required' => 'required',
@@ -99,8 +99,8 @@ para encontrar os incidentes que os confirmem.'
             ],
             'type' => 'radio',
             'options' => [
-                0 => 'num ritmo bastante regular. Se estudar pesado, eu “chego lá”.',
-                1 => 'em saltos. Fico totalmente confuso(a) por algum tempo, e então, repentinamente eu
+                0 => 'num ritmo bastante regular. Se estudar "pesado" eu “chego lá”.',
+                1 => 'em saltos. Fico totalmente confuso por algum tempo, mas, repentinamente eu
 tenho um “estalo”.'
             ],
             'required' => 'required',
@@ -158,7 +158,7 @@ tenho um “estalo”.'
         ]);
         ?>
 
-        <strong>10 - Alguns professores iniciam suas preleções com um resumo do que irão cobrir.
+        <strong>10 - Alguns professores iniciam suas explicações com um resumo do que irão abordar.
 Tais resumos são</strong>
         <?php
         echo $this->Form->input('q10', [
@@ -184,8 +184,7 @@ Tais resumos são</strong>
             'type' => 'radio',
             'options' => [
                 0 => 'penso nas etapas do processo de solução.',
-                1 => 'penso nas possíveis conseqüências, ou sobre a aplicação da solução para uma ampla
-faixa de áreas.'
+                1 => 'penso nas possíveis conseqüências, ou sobre a aplicação da solução para muitos problemas.'
             ],
             'required' => 'required',
             'label' => false
