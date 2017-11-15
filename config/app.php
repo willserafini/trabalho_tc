@@ -333,5 +333,6 @@ return [
      */
     'Session' => [
         'defaults' => 'php',
+        'timeout' => 240 // 180 mins = 3 hr
     ],
 ];

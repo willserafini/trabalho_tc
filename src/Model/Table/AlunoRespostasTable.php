@@ -6,6 +6,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\ORM\TableRegistry;
 
 /**
  * AlunoRespostas Model
@@ -89,6 +90,7 @@ class AlunoRespostasTable extends Table {
     }
 
     public function salvarRespostasAluno($dados, $alunoId) {
+        $quizId = $dados['AlunoResposta'][0]['quiz_id'];
         foreach ($dados['AlunoResposta'] as $resposta) {
             if (empty($resposta['id'])) {
                 //novo registro de resposta do aluno
@@ -102,12 +104,64 @@ class AlunoRespostasTable extends Table {
             $objAlunoResposta->aluno_id = $alunoId;
             $objAlunoResposta->quiz_id = $resposta['quiz_id'];
             $objAlunoResposta->pergunta_id = $resposta['pergunta_id'];
-            $objAlunoResposta->resposta = $resposta['resposta'];
+            $objAlunoResposta->resposta_selecionada = $resposta['resposta_selecionada'];
 
             if (!$this->save($objAlunoResposta)) {
                 throw new Exception('Não foi possível salvar as respostas!');
             }
         }
+
+        $this->calculaNotaQuiz($alunoId, $quizId);
+    }
+
+    private function calculaNotaQuiz($alunoId, $quizId) {
+        $modelAlunoQuizzes = TableRegistry::get('AlunoQuizzes');
+        $modelAlunoQuizRespostaNotas = TableRegistry::get('AlunoQuizRespostaNotas');
+        $novoAlunoQuizDefault = [
+            'aluno_id' => $alunoId,
+            'quiz_id' => $quizId,
+            'nota_final' => 0.00
+        ];
+        $alunoQuiz = $modelAlunoQuizzes->newEntity($novoAlunoQuizDefault);
+        if (!$modelAlunoQuizzes->save($alunoQuiz)) {
+            throw new Exception('Não foi possível salvar a nota final!');
+        }
+
+        $idNovoAlunoQuiz = $alunoQuiz->id;
+        $novoAlunoRespostaNota = [
+            'aluno_quiz_id' => $idNovoAlunoQuiz
+        ];
+        $notaFinal = 0;
+        $queryPerguntas = $this->Perguntas->find('all', ['conditions' => ['Perguntas.quiz_id' => $quizId]])->all()->toArray();
+        $qntPerguntas = count($queryPerguntas);
+        $pontuacaoAcertoPergunta = 10/$qntPerguntas; //deixei como parametro 10 o max de nota para um quiz
+        foreach ($queryPerguntas as $pergunta) {
+            $respostaCorreta = $pergunta->resposta_correta;
+            $queryAlunoResposta = $this->find('all', [
+                        'conditions' => [
+                            'AlunoRespostas.aluno_id' => $alunoId,
+                            'AlunoRespostas.quiz_id' => $quizId,
+                            'AlunoRespostas.pergunta_id' => $pergunta->id,
+                        ]
+                    ])->first();
+
+            $novoAlunoRespostaNota['aluno_resposta_id'] = $queryAlunoResposta->id;
+            $novoAlunoRespostaNota['nota'] = 0;
+            $novoAlunoRespostaNota['obs'] = 'Resposta Correta é a Letra ' . $respostaCorreta;
+            if ($queryAlunoResposta->resposta_selecionada == $respostaCorreta) {
+                $novoAlunoRespostaNota['nota'] = $pontuacaoAcertoPergunta;
+                $novoAlunoRespostaNota['obs'] = 'Resposta Correta!';
+                $notaFinal += $pontuacaoAcertoPergunta;
+            }
+
+            $alunoRespostaNota = $modelAlunoQuizRespostaNotas->newEntity($novoAlunoRespostaNota);
+            if (!$modelAlunoQuizRespostaNotas->save($alunoRespostaNota)) {
+                throw new Exception('Não foi possível salvar a nota final!');
+            }
+        }
+
+        $alunoQuiz->nota_final = $notaFinal;
+        $modelAlunoQuizzes->save($alunoQuiz);
     }
 
 }

@@ -121,7 +121,7 @@ class SiteController extends AreaAlunoController {
 
     public function proximo_conteudo($conteudoAtualId) {
         $this->Alunos->cadastraConteudoEstudado($conteudoAtualId, $this->getIdUsuarioLogado());
-        $quizId = $this->Conteudos->conteudoTemQuiz($conteudoAtualId);
+        $quizId = $this->Conteudos->conteudoTemQuiz($conteudoAtualId, $this->getIdUsuarioLogado());
         if ($quizId) {
             return $this->redirect(['action' => 'quiz', $quizId, $conteudoAtualId]);
         }

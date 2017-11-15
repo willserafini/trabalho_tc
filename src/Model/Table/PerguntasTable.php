@@ -108,6 +108,7 @@ class PerguntasTable extends Table {
             $pergunta->respostaAluno = $pergunta->aluno_resposta_id = '';
             if (!empty($respostaDoAluno)) {
                 $pergunta->respostaAluno = $respostaDoAluno->resposta;
+                $pergunta->respostaSelecionada = $respostaDoAluno->resposta_selecionada;
                 $pergunta->aluno_resposta_id = $respostaDoAluno->id;
             }
         }
@@ -123,10 +124,10 @@ class PerguntasTable extends Table {
                         'AlunoQuizzes.quiz_id' => $quizId
                     ]
                 ])->first();
-        
+
         $retornarDados = ['notaFinal' => $queryAlunoQuizzes->nota_final];
         $retornarDados['perguntas'] = $this->getPerguntasERespostasAluno($quizId, $alunoId);
-        
+
         foreach ($retornarDados['perguntas'] as &$perguntaResposta) {
             $queryAlunoQuizNota = $modelAlunoQuizzes->AlunoQuizRespostaNotas->find('all', [
                         'conditions' => [
@@ -144,8 +145,18 @@ class PerguntasTable extends Table {
 
     public static function getTipos() {
         return [
-            self::TIPO_DISSERTATIVA => 'Dissertativa',
-                //self::TIPO_OBJETIVA => 'Objetiva'
+            self::TIPO_OBJETIVA => 'Objetiva',
+                //self::TIPO_DISSERTATIVA => 'Dissertativa'
+        ];
+    }
+
+    public static function getOpcoesGabarito() {
+        return [
+            'A' => 'A',
+            'B' => 'B',
+            'C' => 'C',
+            'D' => 'D',
+            'E' => 'E'
         ];
     }
 

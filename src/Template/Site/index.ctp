@@ -32,7 +32,7 @@
     <div class="tm-white-curve-left col-xs-12 col-sm-12 col-md-12 col-lg-7 col-xl-6">
         <div class="tm-white-curve-text">
             <h2 class="tm-section-header blue-text">Dúvidas</h2>
-            <a href="<?= $this->Url->build('/cadastrar_duvida'); ?>">->Cadastrar Nova Dúvida</a>
+            <a href="<?= $this->Url->build('/cadastrar_duvida'); ?>">+ Cadastrar Nova Dúvida</a>
             <ul class="">
                 <?php foreach ($duvidas as $duvida): ?>                    
                     <li>

@@ -14,25 +14,41 @@
     <?= $this->Form->create($quiz) ?>
     <fieldset>
         <legend><?= __('Add Quiz') ?></legend>
-        <?php 
+        <?php
         echo $this->Form->control('conteudo_id', ['options' => $conteudos]);
         echo $this->Form->control('nome');
         ?>
     </fieldset>
-    <h4>Perguntas do Quiz</h4>
+    <h4>Perguntas da Atividade</h4>
+    <?php $opcoesGabarito = App\Model\Table\PerguntasTable::getOpcoesGabarito(); ?>
     <div class="perguntas_quizzes">
         <div class="pergunta_padrao">
+            <div class="colunas-3">
+                <?php
+                echo $this->Form->control('perguntas.0.tipo', ['options' => App\Model\Table\PerguntasTable::getTipos()]);
+                echo $this->Form->control('perguntas.0.num_questao', ['value' => 1]);
+                echo $this->Form->control('perguntas.0.resposta_correta', ['options' => $opcoesGabarito, 'required' => true]);
+                ?>
+            </div>
+            <div class="clear"></div>
             <?php
-            echo $this->Form->control('perguntas.0.tipo', ['options' => App\Model\Table\PerguntasTable::getTipos()]);
-            echo $this->Form->control('perguntas.0.num_questao', ['value' => 1]);
-            echo $this->Form->control('perguntas.0.questao');
-            //echo $this->Form->control('perguntas.0.opcoes_resposta_objetiva'); 
+            echo $this->Form->control('perguntas.0.questao', ['required' => false]);
+            echo '<div class="opcoesLetra colunas-2">';
+            foreach ($opcoesGabarito as $key => $opcaoLetra) {
+                echo $this->Form->control('perguntas.0.opcoes_resposta_objetiva.' . $key, ['type' => 'textarea', 'rows' => 5, 'label' => 'Opção ' . $opcaoLetra]);
+            }
+
+            echo '</div>';
             ?>
-            <br />
         </div>
+        <div class="clear"></div>
+        <br />
     </div>
-    <a href="" class="addPergunta">Adicionar mais uma pergunta</a>
+
+    <div class="clear"></div>
+    <br />
+    <a href="" class="addPergunta">+Adicionar mais uma pergunta</a>
 
     <?= $this->Form->button(__('Submit')) ?>
-<?= $this->Form->end() ?>
+    <?= $this->Form->end() ?>
 </div>

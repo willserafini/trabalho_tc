@@ -127,18 +127,18 @@ class ConteudosTable extends Table {
         $conteudos = $query->all();
         return $conteudos->toArray();
     }
-    
+
     public function getPrimeiroConteudo() {
-        return $this->find('all', ['conditions' => [ 'Conteudos.is_primeiro_conteudo' => 1]])->first();
+        return $this->find('all', ['conditions' => ['Conteudos.is_primeiro_conteudo' => 1]])->first();
     }
-    
-    private function getConteudosEmOrdem($arrayConteudosPais, $conteudoAtualId) {        
-        $proximoConteudo = $this->find('all', ['conditions' => [ 'Conteudos.conteudo_anterior_id' => $conteudoAtualId]])->first();
-        if(empty($proximoConteudo)) {
+
+    private function getConteudosEmOrdem($arrayConteudosPais, $conteudoAtualId) {
+        $proximoConteudo = $this->find('all', ['conditions' => ['Conteudos.conteudo_anterior_id' => $conteudoAtualId]])->first();
+        if (empty($proximoConteudo)) {
             return $arrayConteudosPais;
         }
-        
-        $arrayConteudosPais[] = $proximoConteudo;        
+
+        $arrayConteudosPais[] = $proximoConteudo;
         return $this->getConteudosEmOrdem($arrayConteudosPais, $proximoConteudo->id);
     }
 
@@ -147,10 +147,10 @@ class ConteudosTable extends Table {
      * @return array com Conteudos Pais e seus respectivos conteudos filhos
      */
     public function getFullConteudos($retornarApenasConteudosPai = false) {
-        $primeiroConteudo = $this->getPrimeiroConteudo();        
+        $primeiroConteudo = $this->getPrimeiroConteudo();
         $conteudosPai[0] = $primeiroConteudo;
         $conteudosPai = $this->getConteudosEmOrdem($conteudosPai, $primeiroConteudo->id);
-        if($retornarApenasConteudosPai) {
+        if ($retornarApenasConteudosPai) {
             return $conteudosPai;
         }
 
@@ -162,7 +162,7 @@ class ConteudosTable extends Table {
 
             $conteudo['SubConteudos'] = $subConteudos;
         }
-        
+
         return $conteudosPai;
     }
 
@@ -174,17 +174,17 @@ class ConteudosTable extends Table {
     public function getSubConteudos($conteudo_id) {
         $this->recursive = -1; //verificar
         $primeiroSub = $this->find('all', ['conditions' => [
-            'Conteudos.conteudo_id' => $conteudo_id,
-            'Conteudos.conteudo_anterior_id IS NULL']])->first();
-        if(empty($primeiroSub)) {
+                        'Conteudos.conteudo_id' => $conteudo_id,
+                        'Conteudos.conteudo_anterior_id IS NULL']])->first();
+        if (empty($primeiroSub)) {
             return [];
         }
-        
+
         $arraySubConteudos[0] = $primeiroSub;
         $arraySubConteudos = $this->getConteudosEmOrdem($arraySubConteudos, $primeiroSub->id);
         return $arraySubConteudos;
     }
-    
+
     public function listSubConteudos($conteudo_id) {
         $this->recursive = -1;
         return $this->find('list', ['conditions' => ['Conteudos.conteudo_id' => $conteudo_id], 'order' => 'Conteudos.id ASC']);
@@ -197,15 +197,20 @@ class ConteudosTable extends Table {
     /**
      * 
      * @param int $conteudoId
+     * @param int $alunoId
      * @return false se nao tem quiz, se tiver retorna o id do quiz
      */
-    public function conteudoTemQuiz($conteudoId) {
+    public function conteudoTemQuiz($conteudoId, $alunoId) {
         $ModelQuizzes = TableRegistry::get('Quizzes');
-        $quiz = $ModelQuizzes->find('all', ['conditions' => [ 'Quizzes.conteudo_id' => $conteudoId]])->first();
+        $quiz = $ModelQuizzes->find('all', ['conditions' => ['Quizzes.conteudo_id' => $conteudoId]])->first();
         if (empty($quiz)) {
             return false;
         }
-        
+
+        if ($ModelQuizzes->alunoJaFoiAvaliado($alunoId, $quiz->id)) {
+            return false;
+        }
+
         return $quiz->id;
     }
 

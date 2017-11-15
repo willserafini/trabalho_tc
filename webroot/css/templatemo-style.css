@@ -1,11 +1,3 @@
-/*
-
-Strip
-
-http://www.templatemo.com/tm-482-strip
-
-*/
-
 a { transition: all 0.3s ease; }
 
 button:focus { outline: none; }
@@ -87,7 +79,7 @@ p:last-child { margin-bottom: 0; }
 	margin: 0 auto;
 	z-index: 1000;
 	font-size: 0.6em;
-	padding: 1em 2em;
+	padding: 0 2em;
 }
 
 .navbar-container.sticky .navbar-brand {
@@ -363,6 +355,10 @@ textarea, h3 {
 
 #JanelaExplicacaoGeral {
     background-image: url(../img/strip-bg-05.jpg);
+}
+
+.labelOpcaoResposta {
+    border: 1px solid black;
 }
 
 @media screen and (max-width: 1400px) {

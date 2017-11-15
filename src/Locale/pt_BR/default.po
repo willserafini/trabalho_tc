@@ -128,7 +128,7 @@ msgid "The quiz has been deleted."
 msgstr "Atividade removida com sucesso."
 
 msgid "Num Questao"
-msgstr "Número da Questão"
+msgstr "Nº da Questão"
 
 msgid "Questao"
 msgstr "Questão"

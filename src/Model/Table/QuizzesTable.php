@@ -7,6 +7,7 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Cake\ORM\TableRegistry;
+use Exception;
 
 /**
  * Quizzes Model
@@ -83,9 +84,14 @@ class QuizzesTable extends Table {
     }
 
     public function salvar($dados) {
-        $quiz = $this->newEntity($dados);
+        foreach ($dados['perguntas'] as &$pergunta) {
+            $pergunta['opcoes_resposta_objetiva'] = json_encode($pergunta['opcoes_resposta_objetiva']);
+        }
+        
+        $quiz = $this->newEntity($dados, ['associated' => ['Perguntas']]);
         if (!$this->save($quiz)) {
-            throw new Exception('Não foi possível salvar o quiz!');
+            throw new Exception('Não foi possível salvar o quiz!');            
+            debug($quiz->getErrors());
         }
     }
 
@@ -127,7 +133,7 @@ class QuizzesTable extends Table {
         return $alunos;
     }
 
-    private function alunoJaFoiAvaliado($alunoId, $quizId) {
+    public function alunoJaFoiAvaliado($alunoId, $quizId) {
         $modelAlunoQuizzes = TableRegistry::get('AlunoQuizzes');
         $query = $modelAlunoQuizzes->find('all', [
             'conditions' => [

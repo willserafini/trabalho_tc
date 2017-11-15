@@ -13,6 +13,7 @@ use Cake\ORM\Entity;
  * @property int $num_questao
  * @property string $questao
  * @property string $opcoes_resposta_objetiva
+ * @property string $resposta_correta
  *
  * @property \App\Model\Entity\Quiz $quiz
  */

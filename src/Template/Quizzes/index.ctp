@@ -28,7 +28,14 @@
             <?php foreach ($quizzes as $quiz): ?>
                 <tr>
                     <td><?= $this->Number->format($quiz->id) ?></td>
-                    <td><?= $quiz->has('conteudo') ? $this->Html->link($quiz->conteudo->conteudo_pai->nome . '-' . $quiz->conteudo->nome, ['controller' => 'Conteudos', 'action' => 'view', $quiz->conteudo->id]) : '' ?></td>
+                    <?php
+                    $conteudoPaiNome = '';
+                    if(!empty($quiz->conteudo->conteudo_pai)) {
+                        $conteudoPaiNome = $quiz->conteudo->conteudo_pai->nome . '-';
+                    }
+                    
+                    ?>
+                    <td><?= $quiz->has('conteudo') ? $this->Html->link($conteudoPaiNome . $quiz->conteudo->nome, ['controller' => 'Conteudos', 'action' => 'view', $quiz->conteudo->id]) : '' ?></td>
                     <td><?= h($quiz->nome) ?></td>
                     <td><?= h($quiz->modified) ?></td>
                     <td class="actions">

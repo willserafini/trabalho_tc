@@ -12,6 +12,7 @@ use Cake\ORM\Entity;
  * @property int $quiz_id
  * @property int $pergunta_id
  * @property string $resposta
+ * @property string $resposta_selecionada
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
