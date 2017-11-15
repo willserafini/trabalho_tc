@@ -228,11 +228,11 @@ class SiteController extends AreaAlunoController {
 
     private function mandaEmailAvisandoProfessor($duvida) {
         $email = new Email();
-        $email->from(['williantcc2017@gmail.com' => 'Ambiente']);
+        $email->from(['autentica@willian.onehost.com.br' => 'Ambiente']);
         $email->to('willian.serafini@gmail.com'); //colocar email do professor do sistema aqui
         $email->setSubject('Nova Dúvida cadastrada');
         $msg = "Olá Professor, foi cadastrado uma nova dúvida no ambiente.\n"
-                . "Por favor, acesse https://willianserafini.000webhostapp.com/duvidas  \n\n";
+                . "Por favor, acesse https://willian.onehost.com.br/duvidas  \n\n";
         $msg .= "Assunto da dúvida: " . $duvida->assunto . "\n";
         $msg .= "Mensagem: " . $duvida->mensagem;
         $email->send($msg);

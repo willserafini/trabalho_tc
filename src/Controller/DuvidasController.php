@@ -74,11 +74,11 @@ class DuvidasController extends AreaProfessorController {
 
     private function mandaEmailAvisandoAluno($duvida) {
         $email = new Email();
-        $email->from(['williantcc2017@gmail.com' => 'Ambiente']);
+        $email->from(['autentica@willian.onehost.com.br' => 'Ambiente']);
         $email->to($duvida->aluno->email);
         $email->setSubject('Dúvida Respondida');
         $msg = "Olá " . $duvida->aluno->nome . ", sua dúvida foi respondida pelo professor.\n"
-                . "Por favor, acesse https://willianserafini.000webhostapp.com/site/index#tm-section-3  \n\n";
+                . "Por favor, acesse https://willian.onehost.com.br/index#tm-section-3  \n\n";
         $email->send($msg);
     }
 
