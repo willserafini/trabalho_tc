@@ -349,6 +349,10 @@ p:last-child { margin-bottom: 0; }
     color: black;
 }
 
+.descricaoConteudo table {
+    border: solid 2px black;
+}
+
 textarea, h3 {
     color: rgba(0,0,0,0.75);
 }

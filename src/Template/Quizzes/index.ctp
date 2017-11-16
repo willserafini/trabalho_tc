@@ -8,7 +8,7 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Quiz'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('Avaliar Aluno-Atividade'), ['action' => 'avaliar_aluno_quiz']) ?></li>
+        <li><?php //echo $this->Html->link(__('Avaliar Aluno-Atividade'), ['action' => 'avaliar_aluno_quiz']) ?></li>
         <li><?= $this->Html->link(__('Desempenho Aluno-Atividades'), ['action' => 'desempenho_aluno_quizzes']) ?></li>        
     </ul>
 </nav>

@@ -65,7 +65,7 @@ msgid "Conteudo"
 msgstr "Conteúdo"
 
 msgid "Explicacao Geral"
-msgstr "Explicação Geral"
+msgstr "Explicação Geral (para alunos Global)"
 
 msgid "Descricao"
 msgstr "Descrição"

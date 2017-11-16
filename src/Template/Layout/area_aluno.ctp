@@ -100,18 +100,6 @@
 
             $(document).ready(function () {
 
-                var topOffset = 180;
-
-                $(window).scroll(function () {
-
-                    if ($(this).scrollTop() > topOffset) {
-                        $(".navbar-container").addClass("sticky");
-                    } else {
-                        $(".navbar-container").removeClass("sticky");
-                    }
-
-                });
-
                 /* Single page nav
                  -----------------------------------------*/
 
