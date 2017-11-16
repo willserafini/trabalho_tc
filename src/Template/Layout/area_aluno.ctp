@@ -22,7 +22,7 @@
             <?= $this->fetch('title') ?>
         </title>
         <?= $this->Html->meta('icon') ?>
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400">   <!-- Google web font "Open Sans" -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">   <!-- Google web font "Open Sans" -->
 
         <?= $this->Html->css('base.css') ?>
         <?= $this->Html->css('cake.css') ?>  
