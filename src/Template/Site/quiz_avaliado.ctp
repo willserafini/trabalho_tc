@@ -11,21 +11,25 @@
             ?>
             <p>Pergunta <?= $pergunta->num_questao ?>. <?= $pergunta->questao ?></p>
             <div class="input radio">
-                <?php 
-                foreach ($opcoesResposta as $key => $opcaoResposta) : 
+                <?php
+                foreach ($opcoesResposta as $key => $opcaoResposta) :
+                    if (empty($opcaoResposta)) {
+                        continue;
+                    }
+
                     $checked = '';
                     $label = 'labelOpcaoResposta';
-                    if($key == $respostaSelecionadaAluno) {
+                    if ($key == $respostaSelecionadaAluno) {
                         $label = 'label-danger';
                         $checked = 'checked="checked"';
                     }
-                    
-                    if($key == $respostaCorreta) {
+
+                    if ($key == $respostaCorreta) {
                         $label = 'label-success';
                     }
                     ?>
-                
-                
+
+
                     <label class="<?= $label ?>" for="alunoresposta-<?= $index ?>-resposta-selecionada-<?= $key ?>">
                         Letra <?= $key ?>. <?= $opcaoResposta ?>
                     </label>
