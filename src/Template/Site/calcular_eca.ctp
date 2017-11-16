@@ -1,11 +1,10 @@
 <br />
-<div>
+<div class="panel">
     <?= $this->Form->create(); ?>
-    <h2>Questões para Identificar ECA Sequencial/Global</h2>
-
+    <h2 style="color: #00599a; text-align: center">Revisor de Conteúdos de Computação - RCC</h2>
     <br />
+    <h3 style="text-align: center">Questões para Identificar ECA Sequencial/Global</h3>
 
-    <strong>Perguntas</strong>
     <br />
 
     <div class="left-align">
@@ -108,7 +107,7 @@ tenho um “estalo”.'
         ]);
         ?>
     </div>
-        
+
     <div class="right-align">
         <strong>7 - Quando considero um conjunto de informações, provavelmente eu</strong>
         <?php
@@ -159,7 +158,7 @@ tenho um “estalo”.'
         ?>
 
         <strong>10 - Alguns professores iniciam suas explicações com um resumo do que irão abordar.
-Tais resumos são</strong>
+            Tais resumos são</strong>
         <?php
         echo $this->Form->input('q10', [
             'templates' => [
@@ -190,20 +189,8 @@ Tais resumos são</strong>
             'label' => false
         ]);
         ?>
-
-
-
-
     </div>
-
-
-
-
-
-
-
     <br />
-
 
     <?= $this->Form->submit('Enviar', array('class' => 'button')); ?>
     <?= $this->Form->end(); ?>

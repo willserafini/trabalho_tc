@@ -371,7 +371,7 @@ textarea, h3 {
 	.navbar-brand {	padding: 0.4em 1em;	}
 	.navbar-container { 
 		font-size: 0.82em;
-		padding: 1.4em 1.8em; 
+		padding: 0 1.8em; 
 	}
 	.tm-page-content { margin-top: 174px; }
 }
