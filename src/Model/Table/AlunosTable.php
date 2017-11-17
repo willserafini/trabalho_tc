@@ -26,6 +26,7 @@ class AlunosTable extends Table {
     const CURSO_CIENCIA_COMPUTACAO = 1;
     const CURSO_ENGENHARIA_COMPUTACAO = 2;
     const CURSO_LITERATURA_COMPUTACAO = 3;
+    const CURSO_OUTRO = 4;
     const ECA_SEQUENCIAL = 1;
     const ECA_GLOBAL = 2;
 
@@ -171,7 +172,8 @@ class AlunosTable extends Table {
         return [
             self::CURSO_CIENCIA_COMPUTACAO => 'Ciência da Computação',
             self::CURSO_ENGENHARIA_COMPUTACAO => 'Engenharia da Computação',
-            self::CURSO_LITERATURA_COMPUTACAO => 'Literatura da Computação'
+            self::CURSO_LITERATURA_COMPUTACAO => 'Literatura da Computação',
+            self::CURSO_OUTRO => 'Outro'
         ];
     }
 

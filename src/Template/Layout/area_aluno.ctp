@@ -29,7 +29,7 @@
         <?= $this->Html->css('jquery-ui.min.css') ?>        
         <?= $this->Html->css('bootstrap.min.css') ?>
 
-        <?= $this->Html->css('templatemo-style.css') ?>
+        <?= $this->Html->css('templatemo-style.css?v=1') ?>
 
         <?= $this->Html->script('jquery.min') ?>        
         <?= $this->Html->script('tether.min.js') ?>
@@ -87,14 +87,14 @@
                             <br>
                             Trabalho de Conclusão de Curso - Willian Serafini
                         </p>
-                        
-                        
+
+
                     </div>
 
                 </footer> 
             </div>
 
-        </div>
+        </div>        
 
         <!-- Templatemo scripts -->
         <script>

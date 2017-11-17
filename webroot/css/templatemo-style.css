@@ -349,7 +349,8 @@ p:last-child { margin-bottom: 0; }
     color: black;
 }
 
-.descricaoConteudo table {
+.descricaoConteudo table,
+.descricaoConteudo table tr {
     border: solid 2px black;
 }
 
