@@ -128,7 +128,7 @@ class SiteController extends AreaAlunoController {
 
         $this->irParaProximoConteudo($conteudoAtualId);
     }
-    
+
     public function quiz_proximo_conteudo($conteudoAtualId) {
         $this->irParaProximoConteudo($conteudoAtualId);
     }
@@ -219,9 +219,14 @@ class SiteController extends AreaAlunoController {
 
         $this->set('duvida', $duvida);
     }
-    
+
     public function quiz_avaliado($quizId) {
         $quizAvaliado = $this->Perguntas->getQuizAvaliado($quizId, $this->getIdUsuarioLogado());
+        if (!$quizAvaliado) {
+            $this->Flash->error('Quiz ainda não foi avaliado!');
+            return $this->redirect(['action' => 'index']);
+        }
+
         $this->set('quizNome', $this->Quizzes->get($quizId)->nome);
         $this->set('quizPerguntas', $quizAvaliado);
     }

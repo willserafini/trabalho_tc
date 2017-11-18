@@ -125,6 +125,10 @@ class PerguntasTable extends Table {
                     ]
                 ])->first();
 
+        if(empty($queryAlunoQuizzes)) {
+            return false;
+        }
+        
         $retornarDados = ['notaFinal' => $queryAlunoQuizzes->nota_final];
         $retornarDados['perguntas'] = $this->getPerguntasERespostasAluno($quizId, $alunoId);
 

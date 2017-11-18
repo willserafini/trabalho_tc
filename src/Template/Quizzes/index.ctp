@@ -10,6 +10,7 @@
         <li><?= $this->Html->link(__('New Quiz'), ['action' => 'add']) ?></li>
         <li><?php //echo $this->Html->link(__('Avaliar Aluno-Atividade'), ['action' => 'avaliar_aluno_quiz']) ?></li>
         <li><?= $this->Html->link(__('Desempenho Aluno-Atividades'), ['action' => 'desempenho_aluno_quizzes']) ?></li>        
+        <li><?= $this->Html->link(__('Acertos/Erros nas Atividades'), ['action' => 'acerto_erros_atividades']) ?></li>        
     </ul>
 </nav>
 <div class="quizzes index large-9 medium-8 columns content">

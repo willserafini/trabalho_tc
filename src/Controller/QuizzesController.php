@@ -13,7 +13,7 @@ use Cake\Datasource\ConnectionManager;
  * @method \App\Model\Entity\Quiz[] paginate($object = null, array $settings = [])
  */
 class QuizzesController extends AreaProfessorController {
-    
+
     public $components = array('RequestHandler');
 
     /**
@@ -143,19 +143,38 @@ class QuizzesController extends AreaProfessorController {
         $quizzes = $this->Quizzes->find('list')->contain(['Conteudos']);
         $this->set(compact('quizzes'));
     }
-    
+
     public function desempenho_aluno_quizzes() {
         if ($this->request->is('post')) {
             $this->set('notasQuizzes', $this->Quizzes->getNotasQuizzesAluno($this->request->getData('aluno_id')));
         }
-        
+
         $this->Alunos = $this->loadModel('Alunos');
         $this->set('alunos', $this->Alunos->find('list'));
     }
-    
+
+    public function acerto_erros_atividades() {
+        if ($this->request->is('post')) {
+            $dados = $this->request->getData();
+            $quizAvaliado = $this->Quizzes->Perguntas->getQuizAvaliado($dados['quiz_id'], $dados['aluno_id']);
+            if (!$quizAvaliado) {
+                $this->Flash->error('Quiz ainda não foi avaliado!');
+                return $this->redirect($this->referer());
+            }
+
+            $this->set('quizNome', $this->Quizzes->get($dados['quiz_id'])->nome);
+            $this->set('quizPerguntas', $quizAvaliado);
+        }
+
+        $this->Alunos = $this->loadModel('Alunos');
+        $quizzes = $this->Quizzes->find('list');
+        $alunos = $this->Alunos->find('list');
+        $this->set(compact('quizzes', 'alunos'));
+    }
+
     public function getAlunosQueNaoForamAvaliadosAjax() {
         $this->viewBuilder()->setLayout('ajax');
-        $quizId = $this->request->query['quizId'];     
+        $quizId = $this->request->query['quizId'];
         echo json_encode($this->Quizzes->listAlunosQueNaoForamAvaliados($quizId));
         exit();
     }
