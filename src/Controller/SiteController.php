@@ -177,12 +177,13 @@ class SiteController extends AreaAlunoController {
                 $conn->begin();
                 $this->AlunoRespostas->salvarRespostasAluno($this->request->getData(), $this->getIdUsuarioLogado());
                 $conn->commit();
-                $this->Flash->success(__('Respostas salvas com sucesso!'));
+                $this->Flash->success(__("Respostas salvas com sucesso."));
+                $this->Flash->success(__("Verifique seus acertos/erros."));                
                 if (empty($conteudoAtualId)) {
-                    return $this->redirect(['action' => 'index']);
+                    //return $this->redirect(['action' => 'index']);
                 }
 
-                $this->irParaProximoConteudo($conteudoAtualId);
+                return $this->redirect(['action' => 'quiz_avaliado', $quizId]);
             } catch (Exception $e) {
                 $conn->rollback();
                 $this->Flash->error($e->getMessage());
