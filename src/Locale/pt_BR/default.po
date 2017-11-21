@@ -174,3 +174,12 @@ msgstr "Listar Dúvidas"
 
 msgid "Obs"
 msgstr "Observação"
+
+msgid "The pergunta has been saved."
+msgstr "Pergunta salva com sucesso."
+
+msgid "The pergunta could not be saved. Please, try again."
+msgstr "Pergunta não pode ser salva. Por favor, tente novamente."
+
+msgid "Edit Pergunta"
+msgstr "Editar Pergunta"

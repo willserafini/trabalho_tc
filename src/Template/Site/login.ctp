@@ -5,7 +5,7 @@
         <?= $this->Form->create(); ?>
         <?= $this->Form->input('email'); ?>
         <?= $this->Form->input('senha', array('type' => 'password')); ?>
-        <?= $this->Form->submit('Login', array('class' => 'button')); ?>
+        <?= $this->Form->submit('Entrar', array('class' => 'button')); ?>
         <?= $this->Html->link('Nova Conta', ['action' => 'nova_conta'], array('class' => 'button')); ?>
         <?= $this->Form->end(); ?>
     </div>
