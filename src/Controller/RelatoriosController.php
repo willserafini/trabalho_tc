@@ -15,12 +15,7 @@ class RelatoriosController extends AreaProfessorController {
     
     public function initialize() {
         parent::initialize();
-        $this->Alunos = $this->loadModel('Alunos');
-        $this->Conteudos = $this->loadModel('Conteudos');
         $this->Quizzes = $this->loadModel('Quizzes');
-        $this->AlunoRespostas = $this->loadModel('AlunoRespostas');
-        $this->Perguntas = $this->loadModel('Perguntas');
-        $this->Duvidas = $this->loadModel('Duvidas');
     }
 
     public function index() {}
