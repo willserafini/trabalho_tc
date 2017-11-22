@@ -35,7 +35,7 @@ var Quizzes = {
                         </div>\n\
                         <div class="input textarea required">\n\
                             <label for="pergunta-' + index + '-questao">Questão</label>\n\
-                            <textarea name="perguntas[' + index + '][questao]" id="perguntas-' + index + '-questao" rows="5"></textarea>\n\
+                            <textarea name="perguntas[' + index + '][questao]" id="perguntas-' + index + '-questao" rows="20"></textarea>\n\
                         </div>\n\
                         <div class="opcoesLetra colunas-2">\n\
                             <div class="input textarea">\n\

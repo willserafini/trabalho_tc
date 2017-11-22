@@ -1,4 +1,4 @@
-<?php $this->Html->script('quizzes', ['block' => true]); ?>
+<?php $this->Html->script('quizzes.js?v=1', ['block' => true]); ?>
 <?php
 /**
  * @var \App\View\AppView $this
@@ -32,7 +32,7 @@
             </div>
             <div class="clear"></div>
             <?php
-            echo $this->Form->control('perguntas.0.questao', ['required' => false]);
+            echo $this->Form->control('perguntas.0.questao', ['rows' => 20, 'required' => false]);
             echo '<div class="opcoesLetra colunas-2">';
             foreach ($opcoesGabarito as $key => $opcaoLetra) {
                 echo $this->Form->control('perguntas.0.opcoes_resposta_objetiva.' . $key, ['type' => 'textarea', 'rows' => 5, 'label' => 'Opção ' . $opcaoLetra]);
