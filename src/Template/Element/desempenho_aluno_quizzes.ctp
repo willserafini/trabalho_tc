@@ -14,8 +14,8 @@
         ]);
 
         var options = {
-            title: 'Desempenho em Quizzes',
-            hAxis: {title: 'Quizzes', titleTextStyle: {color: '#333'}},
+            title: 'Desempenho nas Atividades',
+            hAxis: {title: 'Atividades', titleTextStyle: {color: '#333'}},
             vAxis: {minValue: 0}
         };
 

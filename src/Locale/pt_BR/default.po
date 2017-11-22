@@ -118,6 +118,9 @@ msgstr "Documento"
 msgid "Quizzes"
 msgstr "Atividades"
 
+msgid "Quiz"
+msgstr "Atividade"
+
 msgid "Add Quiz"
 msgstr "Adicionar Atividade"
 

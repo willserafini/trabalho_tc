@@ -7,7 +7,7 @@
 <div class="desempenho-quiz form large-9 medium-8 columns content">
     <?= $this->Form->create() ?>
     <fieldset>
-        <legend><?= __('Desempenho Aluno em Quizzes') ?></legend>
+        <legend><?= __('Desempenho Aluno nas Atividades') ?></legend>
         <?php
         echo $this->Form->control('aluno_id');        
         ?>
