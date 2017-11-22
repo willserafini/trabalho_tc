@@ -40,7 +40,7 @@ class QuizzesController extends AreaProfessorController {
      */
     public function view($id = null) {
         $quiz = $this->Quizzes->get($id, [
-            'contain' => ['Conteudos', 'Perguntas']
+            'contain' => ['Conteudos' => 'ConteudoPai', 'Perguntas']
         ]);
 
         $this->set('quiz', $quiz);
