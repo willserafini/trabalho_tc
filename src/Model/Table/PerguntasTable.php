@@ -153,6 +153,10 @@ class PerguntasTable extends Table {
                 //self::TIPO_DISSERTATIVA => 'Dissertativa'
         ];
     }
+    
+    public static function getNomeTipo($tipo) {
+        return self::getTipos()[$tipo];
+    }
 
     public static function getOpcoesGabarito() {
         return [

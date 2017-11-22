@@ -44,14 +44,14 @@
             <tr>
                 <th scope="col"><?= __('Tipo') ?></th>
                 <th scope="col"><?= __('Num Questao') ?></th>
-                <th scope="col"><?= __('Questao') ?></th>
+                <th scope="col"><?= __('Resposta Correta') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($quiz->perguntas as $perguntas): ?>
             <tr>
-                <td><?= h($perguntas->tipo) ?></td>
+                <td><?= \App\Model\Table\PerguntasTable::getNomeTipo($perguntas->tipo) ?></td>
                 <td><?= h($perguntas->num_questao) ?></td>
-                <td><?= h($perguntas->questao) ?></td>
+                <td><?= h($perguntas->resposta_correta) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Perguntas', 'action' => 'edit', $perguntas->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['controller' => 'Perguntas', 'action' => 'delete', $perguntas->id], ['confirm' => __('Are you sure you want to delete # {0}?', $perguntas->id)]) ?>
