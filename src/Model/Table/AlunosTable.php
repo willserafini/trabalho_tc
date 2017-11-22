@@ -172,7 +172,7 @@ class AlunosTable extends Table {
         return [
             self::CURSO_CIENCIA_COMPUTACAO => 'Ciência da Computação',
             self::CURSO_ENGENHARIA_COMPUTACAO => 'Engenharia da Computação',
-            self::CURSO_LITERATURA_COMPUTACAO => 'Literatura da Computação',
+            self::CURSO_LITERATURA_COMPUTACAO => 'Licenciatura da Computação',
             self::CURSO_OUTRO => 'Outro'
         ];
     }
