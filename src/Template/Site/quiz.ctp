@@ -1,3 +1,11 @@
+<script>
+    $(function () {
+        $('form').submit(function () {
+            $('.submit').html('<p>Aguarde, calculando nota...</p>');
+        })
+    });
+</script>
+
 <div class="columns">
     <h3><?= $quiz->nome ?></h3>
 
@@ -32,12 +40,13 @@
                         <input type="radio" name="AlunoResposta[<?= $index ?>][resposta_selecionada]" value="<?= $key ?>" id="alunoresposta-<?= $index ?>-resposta-selecionada-<?= $key ?>" required="required">
                         Letra <?= $key ?>. <?= $opcaoResposta ?>
                     </label>
-    <?php endforeach; ?>
+                <?php endforeach; ?>
             </div>
             <br />
-<?php endforeach; ?>
+        <?php endforeach; ?>
+        <?= $this->Form->submit('Enviar Respostas', array('class' => 'button')); ?>
+        <?= $this->Form->end(); ?>
     </div>
 
-    <?= $this->Form->submit('Enviar', array('class' => 'button')); ?>
-<?= $this->Form->end(); ?>
+
 </div>
