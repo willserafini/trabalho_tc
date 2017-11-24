@@ -1,5 +1,10 @@
 <h2 style="color: #00599a; text-align: center">Revisor de Conteúdos de Computação - RCC</h2>
 
+<br />
+<p style="color: #00599a;">Ainda não avaliou o ambiente?
+ <a href="https://goo.gl/forms/wZtXobbIZJ02nVbe2" target="_blank">Clique aqui</a>
+</p>
+
 <section id="tm-section-1" class="row tm-section">
     <div class="tm-white-curve-left col-xs-12 col-sm-12 col-md-12 col-lg-7 col-xl-11">
         <div class="tm-white-curve-text">
