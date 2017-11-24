@@ -29,7 +29,7 @@
         <?= $this->Html->css('jquery-ui.min.css') ?>        
         <?= $this->Html->css('bootstrap.min.css') ?>
 
-        <?= $this->Html->css('templatemo-style.css?v=1') ?>
+        <?= $this->Html->css('templatemo-style.css?v=2') ?>
 
         <?= $this->Html->script('jquery.min') ?>        
         <?= $this->Html->script('tether.min.js') ?>
