@@ -19,10 +19,14 @@ class ConteudosHelper extends Helper {
      */
     protected $_defaultConfig = [];
     public $helpers = array('Url');
-
-    public function imprimiConteudosHTML() {
+    
+    public function initialize(array $config) {
+        parent::initialize($config);
         $this->Conteudos = TableRegistry::get('Conteudos');
         $this->AlunoConteudos = TableRegistry::get('AlunoConteudos');
+    }
+
+    public function imprimiConteudosHTML() {        
         $dadosAluno = $this->request->session()->read('Auth')['Aluno'];
         $isEcaSequencial = $this->isEcaSequencial();
         
@@ -66,8 +70,8 @@ class ConteudosHelper extends Helper {
         return $html;
     }
     
-    private function isEcaSequencial() {
-        $dadosAluno = $this->request->session()->read('Auth')['Aluno'];
+    public function isEcaSequencial() {
+        $dadosAluno = $this->request->session()->read('Auth')['Aluno'];        
         $ecaAluno = $this->AlunoConteudos->alunos->getEcaAluno($dadosAluno['id']);
         return $ecaAluno == \App\Model\Table\AlunosTable::ECA_SEQUENCIAL;
     }
